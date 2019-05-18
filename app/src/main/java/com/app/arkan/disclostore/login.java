@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -34,6 +35,7 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         log=(Button)findViewById(R.id.log);
         un=(EditText)findViewById(R.id.un);
         pass=(EditText)findViewById(R.id.pass);
@@ -43,7 +45,7 @@ public class login extends AppCompatActivity {
         final Drawable customErrorDrawable = getResources().getDrawable(R.drawable.err);
         customErrorDrawable.setBounds(0, 0, customErrorDrawable.getIntrinsicWidth(), customErrorDrawable.getIntrinsicHeight());
 
-        final Intent i=new Intent(this,MainActivity.class);
+        final Intent i=new Intent(this,Main.class);
         handler.postDelayed(runnable, 2000); //2000 is the timeout for the splash
         log.setOnClickListener(new View.OnClickListener() {
 
@@ -71,6 +73,13 @@ public class login extends AppCompatActivity {
 
             }
         });
-
+        Button signup=(Button)findViewById(R.id.signup);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(login.this,registration.class);
+                startActivity(intent);
+            }
+        });
     }
 }
