@@ -8,11 +8,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 //Suleiman AbdElnabi2
-//yt
+
     //Mostfa Maree2
-
-    //sss222333
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
