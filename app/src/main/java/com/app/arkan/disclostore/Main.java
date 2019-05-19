@@ -8,6 +8,6 @@ public class Main extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState,PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        setContentView(R.layout.activity_registeration);
+        setContentView(R.layout.m_act);
     }
 }
