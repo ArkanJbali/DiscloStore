@@ -73,7 +73,8 @@
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/white"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:inputType="textPersonName"/>
 
                 </LinearLayout>
 
@@ -103,6 +104,7 @@
                         android:paddingRight="15dp"
                         android:textColor="@color/white"
                         android:textSize="15sp"
+                        android:inputType="textPassword"
                       />
 
                 </LinearLayout>
