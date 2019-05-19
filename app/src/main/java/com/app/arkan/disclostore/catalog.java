@@ -11,3 +11,4 @@ public class catalog extends AppCompatActivity {
         setContentView(R.layout.activity_catalog);
     }
 }
+

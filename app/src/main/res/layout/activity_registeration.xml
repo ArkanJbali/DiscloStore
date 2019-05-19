@@ -43,6 +43,7 @@
             android:paddingRight="15dp"
             android:textColor="@color/white"
             android:textSize="15sp"
+            android:id="@+id/eun"
             />
 
     </LinearLayout>
@@ -73,7 +74,8 @@
             android:paddingRight="15dp"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:password="true"/>
+            android:password="true"
+            android:id="@+id/ep"/>
 
     </LinearLayout>
     <LinearLayout
@@ -91,7 +93,8 @@
             android:text="confirm password :-"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            />
 
         <EditText
             android:layout_width="match_parent"
@@ -103,7 +106,8 @@
             android:paddingRight="15dp"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:password="true"/>
+            android:password="true"
+            android:id="@+id/ecp"/>
 
     </LinearLayout>
     <LinearLayout
@@ -133,6 +137,7 @@
             android:paddingRight="15dp"
             android:textColor="@color/white"
             android:textSize="15sp"
+            android:id="@+id/ee"
             />
 
     </LinearLayout>
@@ -163,6 +168,7 @@
             android:paddingRight="15dp"
             android:textColor="@color/white"
             android:textSize="15sp"
+            android:id="@+id/eph"
             />
 
     </LinearLayout>
@@ -193,8 +199,47 @@
             android:paddingRight="15dp"
             android:textColor="@color/white"
             android:textSize="15sp"
+            android:id="@+id/el"
             />
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/er"
+        android:layout_below="@+id/location">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="role :-"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio_customer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="customer"
+                android:textColor="@color/white"
+                android:onClick="onRadioButtonClicked"/>
+
+            <RadioButton
+                android:id="@+id/radio_business"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="business"
+                android:textColor="@color/white"
+                android:onClick="onRadioButtonClicked"/>
+        </RadioGroup>
     </LinearLayout>
     <Button
         android:layout_width="wrap_content"
