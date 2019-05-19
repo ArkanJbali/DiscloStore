@@ -19,7 +19,7 @@
             android:layout_centerInParent="true"
             app:fontFamily="casual"
             android:lineSpacingExtra="36sp"
-            android:text="@string/Catalog"
+            android:text="@string/catalog"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="34sp"
@@ -66,7 +66,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Clothes"
+        android:text="@string/clothes"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -109,7 +109,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Shoes"
+                    android:text="@string/shoes"
                     android:layout_alignParentBottom="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
@@ -150,7 +150,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Book"
+                    android:text="@string/book"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:textAlignment="center"
@@ -192,7 +192,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Jewel"
+                    android:text="@string/jewel"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     app:fontFamily="casual"
@@ -232,7 +232,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Optics"
+                    android:text="@string/optics"
                     android:layout_alignParentBottom="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
@@ -273,7 +273,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Toys"
+                    android:text="@string/toys"
                     android:layout_alignParentBottom="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
@@ -314,7 +314,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Flowers"
+                    android:text="@string/flowers"
                     android:layout_alignParentRight="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
@@ -357,7 +357,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Electronics"
+                    android:text="@string/electronics"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     app:fontFamily="casual"
@@ -396,7 +396,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Barber"
+                    android:text="@string/barber"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:textAlignment="center"
@@ -479,7 +479,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Electrical"
+                    android:text="@string/electrical"
                     android:layout_alignParentRight="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
@@ -521,8 +521,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Mechanic"
-
+                    android:text="@string/mechanic"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     app:fontFamily="casual"
@@ -565,7 +564,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     app:fontFamily="casual"
-                    android:text="@string/Blacksmith"
+                    android:text="@string/blacksmith"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     android:textSize="14sp"
@@ -607,7 +606,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     app:fontFamily="casual"
-                    android:text="@string/Blacksmith"
+                    android:text="@string/blacksmith"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     android:textSize="14sp"

@@ -58,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:fontFamily="sans-serif-light"
-                        android:text="@string/Username"
+                        android:text="@string/username"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="15sp" />
