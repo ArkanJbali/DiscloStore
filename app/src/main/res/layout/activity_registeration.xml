@@ -13,7 +13,7 @@
         android:layout_height="150dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/mylogo"
+        android:src="@drawable/disclostorelogo"
         android:layout_centerHorizontal="true"/>
 
     <LinearLayout
@@ -230,7 +230,7 @@
                 android:layout_height="wrap_content"
                 android:text="customer"
                 android:textColor="@color/white"
-                android:onClick="onRadioButtonClicked"/>
+                />
 
             <RadioButton
                 android:id="@+id/radio_business"
@@ -238,7 +238,7 @@
                 android:layout_height="wrap_content"
                 android:text="business"
                 android:textColor="@color/white"
-                android:onClick="onRadioButtonClicked"/>
+                />
         </RadioGroup>
     </LinearLayout>
     <Button

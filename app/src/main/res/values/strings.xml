@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">DiscloStore</string>
+    <string name="Catalog">Stores Catalog</string>
+    <string name="Blacksmith">Blacksmiths</string>
+    <string name="Mechanic">Mechanics</string>
+    <string name="Electrical">Electrical</string>
+    <string name="Carpenter">Carpenters</string>
+    <string name="Barber">Barbers</string>
+    <string name="Electronics">Electronics</string>
+    <string name="Flowers">Flowers</string>
+    <string name="Toys">Toys</string>
+    <string name="Optics">Optics</string>
+    <string name="Jewel">Jewels</string>
+    <string name="Book">Books</string>
+    <string name="Shoes">Shoes</string>
+    <string name="Clothes">Clothes</string>
+    <string name="img">image</string>
+    <string name="login">Login</string>
+    <string name="Username">Username</string>
+    <string name="password">Password</string>
+    <string name="loginnow">Login Now</string>
+    <string name="signup">Signup Now</string>
+    <string name="forget">Forgot Password?</string>
+
+
+
 </resources>

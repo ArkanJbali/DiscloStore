@@ -28,16 +28,16 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        rellay1 = (RelativeLayout) findViewById(R.id.rellay1);
-        rellay2 = (RelativeLayout) findViewById(R.id.rellay2);
-        un=(EditText)findViewById(R.id.un);
-        pass=(EditText)findViewById(R.id.pw);
+        rellay1 =  findViewById(R.id.rellay1);
+        rellay2 =  findViewById(R.id.rellay2);
+        un = findViewById(R.id.un);
+        pass = findViewById(R.id.pw);
         final Drawable customErrorDrawable = getResources().getDrawable(R.drawable.err);
         customErrorDrawable.setBounds(0, 0, customErrorDrawable.getIntrinsicWidth(), customErrorDrawable.getIntrinsicHeight());
 
         handler.postDelayed(runnable, 2000); //2000 is the timeout for the splash
-        Button loginBTN = (Button)findViewById(R.id.btn_login);
-        Button signupBTN = (Button)findViewById(R.id.signup_btn);
+        Button loginBTN = findViewById(R.id.btn_login);
+        Button signupBTN = findViewById(R.id.signup_btn);
         signupBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

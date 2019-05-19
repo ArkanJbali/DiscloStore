@@ -87,6 +87,16 @@ public class registration extends AppCompatActivity {
                     phone.setBackground(getResources().getDrawable(R.drawable.et_bg));
                     phone.setError(null);
                 }
+                RadioButton customerBTN = findViewById(R.id.radio_customer);
+                RadioButton businessBTN = findViewById(R.id.radio_business);
+                if(customerBTN.isChecked()){
+                    x=1;
+                    Toast.makeText(getApplicationContext(),"first one is checked",Toast.LENGTH_SHORT).show();
+                }else if(businessBTN.isChecked()){
+                    x=2;
+                    Toast.makeText(getApplicationContext(),"second one is checked",Toast.LENGTH_SHORT).show();
+                }
+
                 if (x==2){
                     Intent intent=new Intent(registration.this,Main.class);
                     startActivity(intent);

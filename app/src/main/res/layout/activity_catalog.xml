@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,12 +17,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:fontFamily="casual"
+            app:fontFamily="casual"
             android:lineSpacingExtra="36sp"
-            android:text="Stores Catalog"
+            android:text="@string/Catalog"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="34dp"
+            android:textSize="34sp"
             android:textStyle="bold" />
     </RelativeLayout>
     <GridLayout
@@ -55,23 +54,26 @@
     >
 
     <ImageView
+        android:contentDescription="@string/img"
         android:id="@+id/clothesImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:scaleType="fitXY"
-        android:src="@drawable/clothes" />
+        android:src="@drawable/clothes"
+        android:onClick="onClickShops"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clothes"
+        android:text="@string/Clothes"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:fontFamily="casual"
-        android:textSize="16dp"
+        app:fontFamily="casual"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
 </RelativeLayout>
@@ -96,20 +98,23 @@
                 >
 
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/shoes" />
+                    android:src="@drawable/shoes"
+                    android:id="@+id/shoesImg"
+                    android:onClick="onClickShops"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shoes"
+                    android:text="@string/Shoes"
                     android:layout_alignParentBottom="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:fontFamily="casual"
-                    android:textSize="16dp"
+                    app:fontFamily="casual"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -134,20 +139,24 @@
                 >
 
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/book" />
+                    android:src="@drawable/book"
+                    android:id="@+id/bookImg"
+                    android:onClick="onClickShops"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Book"
+                    android:text="@string/Book"
+                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:fontFamily="casual"
-                    android:textSize="16dp"
+                    app:fontFamily="casual"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -172,20 +181,22 @@
                 >
 
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/jewelry" />
+                    android:src="@drawable/jewelry"
+                    android:id="@+id/jewelImg"
+                    android:onClick="onClickShops"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jewel"
-
+                    android:text="@string/Jewel"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:fontFamily="casual"
-                    android:textSize="16dp"
+                    app:fontFamily="casual"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -210,20 +221,23 @@
                 >
 
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/optician" />
+                    android:src="@drawable/optician"
+                    android:id="@+id/opticsImg"
+                    android:onClick="onClickShops"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Optics"
+                    android:text="@string/Optics"
                     android:layout_alignParentBottom="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
-                    android:fontFamily="casual"
-                    android:textSize="14dp"
+                    app:fontFamily="casual"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -248,20 +262,23 @@
                 >
 
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/toy" />
+                    android:src="@drawable/toy"
+                    android:id="@+id/toysImg"
+                    android:onClick="onClickShops"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Toys"
+                    android:text="@string/Toys"
                     android:layout_alignParentBottom="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:fontFamily="casual"
-                    android:textSize="16dp"
+                    app:fontFamily="casual"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -286,21 +303,25 @@
                 >
 
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/flower" />
+                    android:src="@drawable/flower"
+                    android:id="@+id/flowerImg"
+                    android:onClick="onClickShops"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Flowers"
-                    android:layout_alignParentEnd="true"
+                    android:text="@string/Flowers"
+                    android:layout_alignParentRight="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:fontFamily="casual"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    app:fontFamily="casual"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_alignParentEnd="true"/>
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
@@ -324,20 +345,23 @@
                 >
 
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/electronics" />
+                    android:src="@drawable/electronics"
+                    android:id="@+id/electornicsImg"
+                    android:onClick="onClickShops"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Electronics"
+                    android:text="@string/Electronics"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
-                    android:fontFamily="casual"
-                    android:textSize="14dp"
+                    app:fontFamily="casual"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </android.support.v7.widget.CardView>
@@ -361,22 +385,26 @@
                 >
 
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/barber" />
+                    android:src="@drawable/barber"
+                    android:id="@+id/barberImg"
+                    android:onClick="onClickShops"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Barber"
+                    android:text="@string/Barber"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:fontFamily="casual"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    app:fontFamily="casual"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
@@ -396,15 +424,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
-
                 >
 
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/carpenter" />
+                    android:src="@drawable/carpenter"
+                    android:id="@+id/carpenterImg"
+                    android:onClick="onClickShops"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -412,8 +442,8 @@
                     android:layout_alignParentBottom="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:fontFamily="casual"
-                    android:textSize="14dp"
+                    app:fontFamily="casual"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -438,21 +468,25 @@
                 >
 
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/electrical" />
+                    android:src="@drawable/electrical"
+                    android:id="@+id/electricalImg"
+                    android:onClick="onClickShops"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Electrical"
-                    android:layout_alignParentEnd="true"
+                    android:text="@string/Electrical"
+                    android:layout_alignParentRight="true"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
-                    android:fontFamily="casual"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    app:fontFamily="casual"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
@@ -476,20 +510,23 @@
                 >
 
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/mechanic" />
+                    android:src="@drawable/mechanic"
+                    android:id="@+id/mechanicImg"
+                    android:onClick="onClickShops"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mechanic"
+                    android:text="@string/Mechanic"
 
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:fontFamily="casual"
-                    android:textSize="16dp"
+                    app:fontFamily="casual"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -514,20 +551,24 @@
                 >
 
                 <ImageView
+                    android:contentDescription="@string/img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/blacksmith" />
+                    android:src="@drawable/blacksmith"
+                    android:id="@+id/blacksmithImg"
+                    android:onClick="onClickShops"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Blacksmith"
                     android:layout_alignParentBottom="true"
+                    app:fontFamily="casual"
+                    android:text="@string/Blacksmith"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:fontFamily="casual"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -556,16 +597,20 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/blacksmith" />
+                    android:src="@drawable/blacksmith"
+                    android:contentDescription="@string/img"
+                    android:id="@+id/blacksmith2Img"
+                    android:onClick="onClickShops"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Blacksmith"
                     android:layout_alignParentBottom="true"
+                    app:fontFamily="casual"
+                    android:text="@string/Blacksmith"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:fontFamily="casual"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
