@@ -13,7 +13,7 @@ public class listShops extends AppCompatActivity {
         setContentView(R.layout.list_shops);
         Toolbar tb =  findViewById(R.id.app_bar);
         tb.setTitle(getIntent().getStringExtra("Title"));
-        tb.setLogo(R.drawable.disclostore_icon);
+        tb.setLogo(R.drawable.disclostore_icon_small);
         setSupportActionBar(tb);
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
