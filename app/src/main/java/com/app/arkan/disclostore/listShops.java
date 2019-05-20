@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 public class listShops extends AppCompatActivity {
     @Override
@@ -19,7 +20,13 @@ public class listShops extends AppCompatActivity {
     }
 
     public void openRatingDialog(View v){
-        startActivity(new Intent(listShops.this,Main.class));
+       // startActivity(new Intent(listShops.this,Main.class));
+        GlobalUtils.showDialog(this, new DialogCallback() {
+            @Override
+            public void callback(int ratings) {
+                Toast.makeText(getApplicationContext(),ratings + " ",Toast.LENGTH_LONG).show();
+            }
+        });
     }
     public void rowClick(View v){
         startActivity(new Intent(listShops.this,StoreInfo.class));
