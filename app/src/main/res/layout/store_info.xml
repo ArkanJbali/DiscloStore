@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-<TextView
-    android:layout_centerInParent="true"
-    android:layout_width="wrap_content"
-    android:text="Store Info"
-    android:textSize="40sp"
-    android:layout_height="wrap_content" />
-</RelativeLayout>
+
+    <ImageView
+        android:id="@+id/heroImageView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/hm"
+        android:scaleType="fitCenter" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#9E9E9E"
+        android:dividerHeight="1dp"
+        android:scrollbars="none">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/stickyView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#222"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="Heading1"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+</FrameLayout>
