@@ -44,6 +44,9 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.arkan.disclostore.catalog" />
         </activity>
         <activity android:name=".StoreInfo"
             android:theme="@style/AppTheme.NoActionBar">
