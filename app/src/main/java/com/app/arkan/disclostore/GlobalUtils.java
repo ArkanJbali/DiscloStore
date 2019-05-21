@@ -1,8 +1,10 @@
 package com.app.arkan.disclostore;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.util.Log;
 import android.widget.Toast;
@@ -12,6 +14,7 @@ import com.hsalf.smilerating.SmileRating;
 
 public class GlobalUtils {
     static int rating = 0;
+
     public  static void showDialog(Context context, final DialogCallback dialogCallback){
         final RatingDialog dialog = new RatingDialog(context, R.style.CustomDialogTheme);
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -49,6 +52,13 @@ public class GlobalUtils {
 
 
                 }
+            }
+        });
+        ImageView imageView = dialog.findViewById(R.id.cancel_img);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
         TextView done_btn = dialog.findViewById(R.id.done_btn);

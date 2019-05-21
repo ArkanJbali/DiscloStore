@@ -64,6 +64,7 @@
                         android:textSize="15sp" />
 
                     <EditText
+                        android:drawableLeft="@mipmap/email_icon"
                         android:id="@+id/un"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
@@ -94,6 +95,7 @@
                         android:textSize="15sp" />
 
                     <EditText
+                        android:drawableLeft="@mipmap/password_icon"
                         android:id="@+id/pw"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
