@@ -21,7 +21,9 @@
     <string name="loginnow">Login Now</string>
     <string name="signup">Signup Now</string>
     <string name="forget">Forgot Password?</string>
-
-
+    <string name="spinner_title">spinner_title</string>
+    <string name="uploadImages">Set your image</string>
+    <string name="action_pic">Pictures</string>
 
 </resources>
+

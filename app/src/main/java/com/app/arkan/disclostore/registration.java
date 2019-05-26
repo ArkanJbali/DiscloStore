@@ -98,7 +98,7 @@ public class registration extends AppCompatActivity {
                 }
 
                 if (x==2){
-                    Intent intent=new Intent(registration.this,Main.class);
+                    Intent intent=new Intent(registration.this,busniss_reg.class);
                     startActivity(intent);
                 }
             }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/grad_bg"
+    >
+
+
+
+
+    <Button
+        android:id="@+id/pickFromGallery"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text=" Pick From Gallery "
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        />
+    <Button
+        android:id="@+id/pickFromCamera"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text=" Pick From Camera "
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/pickFromGallery"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        />
+    <Button
+        android:id="@+id/removeImage"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text=" remove image "
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/pickFromCamera"
+android:layout_marginBottom="5dp"
+
+        />
+</RelativeLayout>
