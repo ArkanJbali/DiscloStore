@@ -17,18 +17,18 @@
         android:divider="#9E9E9E"
         android:dividerHeight="1dp"
         android:scrollbars="none">
-
     </ListView>
 
     <TextView
         android:id="@+id/stickyView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#222"
+        android:background="@color/colorPrimary"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
         android:text="Heading1"
         android:textColor="#fff"
         android:textSize="20sp"
+        android:fontFamily="casual"
         android:textStyle="bold" />
 </FrameLayout>
