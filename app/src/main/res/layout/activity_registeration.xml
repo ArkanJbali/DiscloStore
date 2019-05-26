@@ -44,6 +44,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:id="@+id/eun"
+            android:drawableLeft="@mipmap/user_icon"
+
             />
 
     </LinearLayout>
@@ -75,7 +77,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:password="true"
-            android:id="@+id/ep"/>
+            android:id="@+id/ep"
+            android:drawableLeft="@mipmap/password_icon"/>
 
     </LinearLayout>
     <LinearLayout
@@ -107,7 +110,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:password="true"
-            android:id="@+id/ecp"/>
+            android:id="@+id/ecp"
+            android:drawableLeft="@mipmap/password_icon"/>
 
     </LinearLayout>
     <LinearLayout
@@ -138,6 +142,7 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:id="@+id/ee"
+            android:drawableLeft="@mipmap/email_icon"
             />
 
     </LinearLayout>
@@ -150,6 +155,7 @@
         >
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
@@ -169,6 +175,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:id="@+id/eph"
+            android:drawableLeft="@mipmap/phone_icon"
+
             />
 
     </LinearLayout>
@@ -200,6 +208,7 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:id="@+id/el"
+            android:drawableLeft="@mipmap/location_icon"
             />
 
     </LinearLayout>

@@ -34,7 +34,7 @@
     <Button
 android:layout_below="@+id/Category"
         android:id="@+id/pick_image"
-        android:layout_width="100dp"
+        android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,6 +45,7 @@ android:layout_below="@+id/Category"
         android:textColor="#FFF"
         android:textSize="16dp"
         android:background="@drawable/btn_bg"
+        android:drawableLeft="@mipmap/photo_icon"
         />
     <ImageView
         android:layout_marginTop="30dp"
@@ -72,6 +73,7 @@ android:layout_below="@+id/Category"
         >
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
@@ -92,6 +94,7 @@ android:layout_below="@+id/Category"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:id="@+id/ea"
+            android:drawableLeft="@mipmap/about_icon"
             />
 
     </LinearLayout>
@@ -123,6 +126,7 @@ android:layout_below="@+id/Category"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:id="@+id/elebp"
+            android:drawableLeft="@mipmap/telphone_icon"
             />
 
     </LinearLayout>
@@ -154,6 +158,7 @@ android:layout_below="@+id/Category"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:id="@+id/ef"
+            android:drawableLeft="@mipmap/fax_icon"
             />
 
     </LinearLayout>
@@ -185,6 +190,7 @@ android:layout_below="@+id/Category"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:id="@+id/ebe"
+            android:drawableLeft="@mipmap/email_icon"
             />
 
     </LinearLayout>
@@ -216,6 +222,7 @@ android:layout_below="@+id/Category"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:id="@+id/ew"
+            android:drawableLeft="@mipmap/url_icon"
             />
 
     </LinearLayout>
