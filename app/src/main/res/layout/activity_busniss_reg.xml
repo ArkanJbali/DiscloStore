@@ -201,7 +201,53 @@ android:layout_below="@+id/Category"
         android:id="@+id/url"
         android:layout_below="@id/bemail"
         >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text=" From :-"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+            <EditText
+                android:id="@+id/etChooseTime"
+                android:layout_width="150dp"
+                android:background="@drawable/et_bg"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:hint="  Pick time"
+                android:drawableLeft="@mipmap/time"
+                android:textColorHint="@color/white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text=" To:-"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+            <EditText
+                android:id="@+id/etChooseTime1"
+                android:layout_width="150dp"
+                android:background="@drawable/et_bg"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:hint="  Pick time"
+                android:drawableLeft="@mipmap/time"
+                android:textColorHint="@color/white"/>
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -225,7 +271,9 @@ android:layout_below="@+id/Category"
             android:drawableLeft="@mipmap/url_icon"
             />
 
+
     </LinearLayout>
+
     <Button
         android:background="@drawable/btn_bg"
         android:layout_below="@+id/url"

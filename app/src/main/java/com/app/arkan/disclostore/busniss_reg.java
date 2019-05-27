@@ -10,6 +10,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -30,6 +31,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -39,7 +41,8 @@ public class busniss_reg extends Activity implements OnItemSelectedListener ,Vie
     private Button pickImage;
     EditText ea,ebp,ef,ebe,ew;
     Button add;
-
+    EditText chooseTime ;
+    EditText chooseTime1 ;
     private static final int SELECT_PHOTO = 1;
     private static final int CAPTURE_PHOTO = 2;
 
@@ -55,6 +58,8 @@ public class busniss_reg extends Activity implements OnItemSelectedListener ,Vie
 public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busniss_reg);
+        chooseTime=(EditText)findViewById(R.id.etChooseTime);
+        chooseTime1=(EditText)findViewById(R.id.etChooseTime);
         profileImageView = (ImageView) findViewById(R.id.profileImageView);
         pickImage = (Button) findViewById(R.id.pick_image);
          ea=(EditText)findViewById(R.id.ea);
@@ -82,7 +87,34 @@ public void onCreate(Bundle savedInstanceState) {
 
              }
          });
+        chooseTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                TimePickerDialog timePickerDialog = new TimePickerDialog(busniss_reg.this,R.style.MyTimePickerDialogStyle, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                        chooseTime.setText(" "+hourOfDay + ":" + minutes);
+                    }
+                }, 0, 0, false);
+                timePickerDialog.show();
+
+            }
+        });
+        chooseTime1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(busniss_reg.this,R.style.MyTimePickerDialogStyle, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                        chooseTime.setText(" "+hourOfDay + ":" + minutes);
+                    }
+                }, 0, 0, false);
+                timePickerDialog.show();
+
+            }
+        });
 
         pickImage.setOnClickListener(this);
 

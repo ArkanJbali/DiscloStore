@@ -30,5 +30,12 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:background">@color/bar_color</item>
     </style>
+    <style name="MyTimePickerDialogStyle" parent="@style/ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="showTitle">false</item>
+        <item name="colorControlActivated">#ffd600</item>
+        <item name="colorAccent">#b71c1c</item>
+        <item name="android:textColorPrimary">#43a047</item>
+        <item name="android:textColorSecondary">#f44336</item>
+    </style>
 
 </resources>
