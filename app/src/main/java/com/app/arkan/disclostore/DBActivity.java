@@ -68,10 +68,10 @@ public class DBActivity extends Activity {
     public void addOwnership(View v){
         db.open();
         //role 1-user 2-ownership
-        long s1=db.insertOwnership(1,"about","img1","12-00-22","05233","321","s@g.com","www.com","Haifa");
-        long s2=db.insertOwnership(2,"about","img2","99-00-22","0123","444","s@g.com","www.com","Haifa");
+       // long s1=db.insertOwnership(1,"about","img1","12-00-22","05233","321","s@g.com","www.com","Haifa");
+      //  long s2=db.insertOwnership(2,"about","img2","99-00-22","0123","444","s@g.com","www.com","Haifa");
 
-        Toast.makeText(getApplicationContext(),s1 + " " + s2 + "added",Toast.LENGTH_LONG).show();
+      //  Toast.makeText(getApplicationContext(),s1 + " " + s2 + "added",Toast.LENGTH_LONG).show();
         db.close();
     }
     public void getOwnership(View v){
@@ -98,5 +98,10 @@ public class DBActivity extends Activity {
                         "OpenDay:  " + c.getString(7)+ "\n"+
                         "URL:  " + c.getString(8)+ "\n"+
                         "Location:  " + c.getString(9)+ "\n", Toast.LENGTH_LONG).show();
+    }
+    public void getCount(View v){
+        db.open();
+       long s= db.getShopsCount("s");
+        Toast.makeText(getApplicationContext(),"count= "+s,Toast.LENGTH_LONG).show();
     }
 }

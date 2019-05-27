@@ -358,7 +358,6 @@ public void onNothingSelected(AdapterView<?> arg0) {
     }
 
     public void addToDb(View view){
-
         profileImageView.setDrawingCacheEnabled(true);
         profileImageView.buildDrawingCache();
         Bitmap bitmap = profileImageView.getDrawingCache();

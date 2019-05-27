@@ -79,6 +79,7 @@ public class login extends AppCompatActivity {
                        }
                        if(ROLE_FLAG == 2) {
                            Toast.makeText(getApplicationContext(),"Go to ownership activity", Toast.LENGTH_LONG).show();
+                           startActivity(new Intent(login.this, Ownership.class));
                        }
                    }else{
                        Toast.makeText(getApplicationContext(),"Invalid UserName or Password !!!", Toast.LENGTH_LONG).show();

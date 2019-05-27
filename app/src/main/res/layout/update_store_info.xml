@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_store_info">
+    <include layout="@layout/app_bar"
+        android:id="@+id/app_bar" />
     <RelativeLayout
+        android:layout_below="@+id/app_bar"
         android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -30,41 +33,10 @@
             />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/social_media"
-        android:layout_below="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
-        <ImageView
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/facebook"/>
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/snapchat"/>
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/instagram"/>
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/youtube"/>
-    </LinearLayout>
+
     <GridLayout
-        android:layout_below="@+id/social_media"
+        android:id="@+id/cards"
+        android:layout_below="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="1"
@@ -108,13 +80,13 @@
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/aboutImg"
                     android:layout_toEndOf="@+id/aboutImg"/>
-                <TextView
+                <EditText
                     android:id="@+id/abouts"
                     android:layout_below="@+id/about"
                     android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="About sadasdas sadas dasd asd asdas das das das d asd asd asd asdasdas das dsa das das das das das d asd asd as das das d asd asd as das d asd as das d sad as d asd as das das d asd sa das d asd as dsa dsa d sad sa dsa d sad as das d asd s af asf asd as das d saf sa fas das d asf sa fas d sad as f sad asd a d"
+                   android:hint="Here"
                     android:textColor="@android:color/white"
                     app:fontFamily="casual"
                     android:textSize="10sp"
@@ -161,13 +133,13 @@
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/calenderImg"
                     android:layout_toEndOf="@+id/calenderImg"/>
-                <TextView
+                <EditText
                     android:id="@+id/opens"
                     android:layout_below="@+id/open"
                     android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sat, Mon, Thu - 8:00 - 20:30\nFri, Sun - 19:30 - 23:00"
+                    android:hint="Here"
                     android:textColor="@android:color/white"
                     app:fontFamily="casual"
                     android:textSize="10sp"
@@ -213,45 +185,20 @@
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/contactImg"
                     android:layout_toEndOf="@+id/contactImg"/>
-                <TextView
+                <EditText
                     android:id="@+id/phone"
                     android:layout_below="@+id/contact"
                     android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Phone: +972-0524033910"
+                    android:hint="Here"
                     android:textColor="@android:color/white"
                     app:fontFamily="casual"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/contactImg"
                     android:layout_toEndOf="@+id/contactImg"/>
-                <TextView
-                    android:id="@+id/fax"
-                    android:layout_below="@+id/phone"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Phone: +972-00023333"
-                    android:textColor="@android:color/white"
-                    app:fontFamily="casual"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    android:layout_toRightOf="@+id/contactImg"
-                    android:layout_toEndOf="@+id/contactImg"/>
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_below="@+id/fax"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email: arkan.1997@gmail.com"
-                    android:textColor="@android:color/white"
-                    app:fontFamily="casual"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    android:layout_toRightOf="@+id/contactImg"
-                    android:layout_toEndOf="@+id/contactImg"/>
+
 
 
             </RelativeLayout>
@@ -280,6 +227,7 @@
                     android:contentDescription="@string/img" />
 
                 <TextView
+                    android:id="@+id/loc"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -287,6 +235,19 @@
                     android:textColor="@android:color/white"
                     app:fontFamily="casual"
                     android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@+id/locationImg"
+                    android:layout_toEndOf="@+id/locationImg"/>
+                <EditText
+                    android:id="@+id/location"
+                    android:layout_below="@+id/loc"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Here"
+                    android:textColor="@android:color/white"
+                    app:fontFamily="casual"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/locationImg"
                     android:layout_toEndOf="@+id/locationImg"/>
@@ -318,6 +279,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/web"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -328,10 +290,49 @@
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/websiteImg"
                     android:layout_toEndOf="@+id/websiteImg"/>
+                <EditText
+                    android:id="@+id/website"
+                    android:layout_below="@+id/web"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Here"
+                    android:textColor="@android:color/white"
+                    app:fontFamily="casual"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@+id/websiteImg"
+                    android:layout_toEndOf="@+id/websiteImg"/>
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
+<android.support.v7.widget.CardView
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_columnWeight="1"
+    android:layout_rowWeight="1"
+    android:layout_marginBottom="5dp"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    >
+    <RelativeLayout
 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_store_infoo"
+        >
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:fontFamily="casual"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
     </GridLayout>
 
 </RelativeLayout>

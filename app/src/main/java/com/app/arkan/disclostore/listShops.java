@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class listShops extends AppCompatActivity {
+    DBAdapter db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class listShops extends AppCompatActivity {
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        db = new DBAdapter(this);
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
     @Override
@@ -56,5 +57,13 @@ public class listShops extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu,menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void getCount(View v){
+        db.open();
+        String storename = getIntent().getStringExtra("Title");
+        storename.toLowerCase();
+        long s= db.getShopsCount(storename.toLowerCase());
+        Toast.makeText(getApplicationContext(),"count = "+s,Toast.LENGTH_LONG).show();
     }
 }

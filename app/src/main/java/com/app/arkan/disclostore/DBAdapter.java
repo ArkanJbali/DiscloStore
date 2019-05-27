@@ -54,7 +54,7 @@ public class DBAdapter {
 
     static final String DATABASE_CREATE_OWNERSHIP =
             "create table ownership (_id integer primary key autoincrement, "
-                    + "category integer not null, image text not null, " +
+                    + "category integer not null, image BLOB NOT NULL, " +
                     "about text not null, fax text not null,bphone text not null, bemail text not null, " +
                     "openday text not null,  url text not null," +
                     "location text not null);";
@@ -128,7 +128,7 @@ public class DBAdapter {
         DBHelper.close();
     }
 
-    public long insertOwnership(int category, String about, String image, String openday, String fax, String bphone, String bemail, String url, String location)
+    public long insertOwnership(int category, String about, byte[] image, String openday, String fax, String bphone, String bemail, String url, String location)
     {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_CATEGORY, category);
@@ -273,6 +273,23 @@ public class DBAdapter {
         args.put(KEY_ROLE, role);
         return db.update(DATABASE_USER_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
+
+    public boolean updateRating(long rowId, int rating)
+    {
+        ContentValues args = new ContentValues();
+        args.put(KEY_RATING, rating);
+        return db.update(DATABASE_STORE_TABLE, args, KEY_ROWID4 + "=" + rowId, null) > 0;
+    }
+
+    public long getShopsCount(String storename){
+        String countQuery = "SELECT  * FROM " + DATABASE_USER_TABLE + " where " + " = " + storename ;
+         db = DBHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
 
 
 }

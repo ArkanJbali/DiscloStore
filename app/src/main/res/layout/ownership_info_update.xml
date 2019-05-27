@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/blue_bg"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:fontFamily="casual"
+        android:text="SDSDDSFSFFS"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="30sp"/>
+    <GridLayout
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/social_media"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="1"
+        android:rowCount="2"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        android:padding="15dp">
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp"
+            android:onClick="updateView"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/bg_store_infoo"
+                >
+
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:contentDescription="@string/img"
+                    android:id="@+id/updateImg"
+                    android:layout_centerVertical="true"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@mipmap/update_icon"
+                    />
+
+                <TextView
+                    android:id="@+id/update"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Update Your Store Info"
+                    android:textColor="@android:color/white"
+                    app:fontFamily="casual"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@+id/updateImg"
+                    android:layout_toEndOf="@+id/updateImg"/>
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp"
+            android:onClick="storeView"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/bg_store_infoo"
+                >
+
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:contentDescription="@string/img"
+                    android:id="@+id/viewImg"
+                    android:layout_centerVertical="true"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@mipmap/view_icon"
+                    />
+
+                <TextView
+                    android:id="@+id/view"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Your Store Info"
+                    android:textColor="@android:color/white"
+                    app:fontFamily="casual"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@+id/viewImg"
+                    android:layout_toEndOf="@+id/viewImg"/>
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+    </GridLayout>
+</LinearLayout>
