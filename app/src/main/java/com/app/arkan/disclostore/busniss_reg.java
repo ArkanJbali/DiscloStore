@@ -54,6 +54,12 @@ public class busniss_reg extends Activity implements OnItemSelectedListener ,Vie
     String data="";
     String day="";
     String cat="";
+    String about="";
+    String bphone="";
+    String fax="";
+    String bemail="";
+    String web="";
+    String time="";
     private static final int SELECT_PHOTO = 1;
     private static final int CAPTURE_PHOTO = 2;
 
@@ -379,14 +385,19 @@ if (check()){
      if(th.isChecked()){ day+="Th ,";}
      if(fr.isChecked()){ day+="Fr ,";}
      if(sa.isChecked()){ day+="Sa ,";}
-     day+="\n"+chooseTime.getText().toString()+"-"+chooseTime1.getText().toString();
-     data+=cat="\n";
-     data+=ea.getText().toString()+"\n";
-     data+=ebp.getText().toString()+"\n";
-     data+=ef.getText().toString()+"\n";
-     data+=ebe.getText().toString()+"\n";
-     data+=ew.getText().toString()+"\n";
-     Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
+    time=chooseTime.getText().toString()+"-"+chooseTime1.getText().toString();
+     about=ea.getText().toString();
+     bphone=ebp.getText().toString();
+     fax=ef.getText().toString();
+     bemail=ebe.getText().toString();
+     web=ew.getText().toString();
+        Toast.makeText(this, cat, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, about, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, bphone, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, fax, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, bemail, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, day, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, time, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, web, Toast.LENGTH_SHORT).show();
     }
 }
