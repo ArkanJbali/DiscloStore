@@ -27,6 +27,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -41,8 +42,18 @@ public class busniss_reg extends Activity implements OnItemSelectedListener ,Vie
     private Button pickImage;
     EditText ea,ebp,ef,ebe,ew;
     Button add;
-    EditText chooseTime ;
-    EditText chooseTime1 ;
+    TextView chooseTime ;
+    TextView chooseTime1 ;
+    CheckBox su;
+    CheckBox mo;
+    CheckBox tu;
+    CheckBox we;
+    CheckBox th ;
+    CheckBox fr;
+    CheckBox sa;
+    String data="";
+    String day="";
+    String cat="";
     private static final int SELECT_PHOTO = 1;
     private static final int CAPTURE_PHOTO = 2;
 
@@ -58,8 +69,8 @@ public class busniss_reg extends Activity implements OnItemSelectedListener ,Vie
 public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busniss_reg);
-        chooseTime=(EditText)findViewById(R.id.etChooseTime);
-        chooseTime1=(EditText)findViewById(R.id.etChooseTime);
+        chooseTime=(TextView)findViewById(R.id.etChooseTime);
+        chooseTime1=(TextView)findViewById(R.id.etChooseTime1);
         profileImageView = (ImageView) findViewById(R.id.profileImageView);
         pickImage = (Button) findViewById(R.id.pick_image);
          ea=(EditText)findViewById(R.id.ea);
@@ -68,9 +79,17 @@ public void onCreate(Bundle savedInstanceState) {
          ebe=(EditText)findViewById(R.id.ebe);
          ew=(EditText)findViewById(R.id.ew);
          add=(Button)findViewById(R.id.add);
-         add.setOnClickListener(new View.OnClickListener() {
+         su=(CheckBox)findViewById(R.id.chksu);
+         mo=(CheckBox)findViewById(R.id.chkmo);
+         tu=(CheckBox)findViewById(R.id.chktu);
+         we=(CheckBox)findViewById(R.id.chkwe);
+         th=(CheckBox)findViewById(R.id.chkth);
+         fr=(CheckBox)findViewById(R.id.chkfr);
+         sa=(CheckBox)findViewById(R.id.chksa);
+        add.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
+                 dis();
                  /*
                  profileImageView.setDrawingCacheEnabled(true);
                  profileImageView.buildDrawingCache();
@@ -108,7 +127,7 @@ public void onCreate(Bundle savedInstanceState) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(busniss_reg.this,R.style.MyTimePickerDialogStyle, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
-                        chooseTime.setText(" "+hourOfDay + ":" + minutes);
+                        chooseTime1.setText(" "+hourOfDay + ":" + minutes);
                     }
                 }, 0, 0, false);
                 timePickerDialog.show();
@@ -168,7 +187,7 @@ public void onCreate(Bundle savedInstanceState) {
 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
         String item = parent.getItemAtPosition(position).toString()+id;
-
+cat=item;
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
         }
@@ -351,5 +370,23 @@ if (check()){
         if (ea.getText() == null && ebp.getText() == null && ef == null && ebe.getText() == null && ew.getText() == null)
         return true;
         else return false;
+    }
+    public void dis(){
+     if(su.isChecked()){ day+="Su ,";}
+     if(mo.isChecked()){ day+="Mo ,";}
+     if(tu.isChecked()){ day+="Tu ,";}
+     if(we.isChecked()){ day+="We ,";}
+     if(th.isChecked()){ day+="Th ,";}
+     if(fr.isChecked()){ day+="Fr ,";}
+     if(sa.isChecked()){ day+="Sa ,";}
+     day+="\n"+chooseTime.getText().toString()+"-"+chooseTime1.getText().toString();
+     data+=cat="\n";
+     data+=ea.getText().toString()+"\n";
+     data+=ebp.getText().toString()+"\n";
+     data+=ef.getText().toString()+"\n";
+     data+=ebe.getText().toString()+"\n";
+     data+=ew.getText().toString()+"\n";
+     Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, day, Toast.LENGTH_SHORT).show();
     }
 }

@@ -69,7 +69,7 @@ android:layout_below="@+id/Category"
         android:orientation="vertical"
         android:id="@+id/about"
         android:layout_below="@id/pick_image"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         >
 
         <TextView
@@ -85,7 +85,7 @@ android:layout_below="@+id/Category"
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/et_bg"
             android:fontFamily="sans-serif-light"
@@ -116,18 +116,18 @@ android:layout_below="@+id/Category"
             android:textSize="15sp" />
 
         <EditText
+            android:id="@+id/ebp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/et_bg"
+            android:drawableLeft="@mipmap/telphone_icon"
             android:fontFamily="sans-serif-light"
+            android:inputType="phone"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:textColor="@color/white"
-            android:textSize="15sp"
-            android:id="@+id/ebp"
-            android:drawableLeft="@mipmap/telphone_icon"
-            />
+            android:textSize="15sp" />
 
     </LinearLayout>
     <LinearLayout
@@ -157,6 +157,7 @@ android:layout_below="@+id/Category"
             android:paddingRight="15dp"
             android:textColor="@color/white"
             android:textSize="15sp"
+            android:inputType="phone"
             android:id="@+id/ef"
             android:drawableLeft="@mipmap/fax_icon"
             />
@@ -189,6 +190,7 @@ android:layout_below="@+id/Category"
             android:paddingRight="15dp"
             android:textColor="@color/white"
             android:textSize="15sp"
+            android:inputType="textEmailAddress"
             android:id="@+id/ebe"
             android:drawableLeft="@mipmap/email_icon"
             />
@@ -201,10 +203,73 @@ android:layout_below="@+id/Category"
         android:id="@+id/url"
         android:layout_below="@id/bemail"
         >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="week-days :-"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        >
+        <CheckBox
+            android:id="@+id/chksu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Su"
+            android:textColor="@color/white"/>
+
+        <CheckBox
+            android:id="@+id/chkmo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mo"
+            android:textColor="@color/white"/>
+
+        <CheckBox
+            android:id="@+id/chktu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tu"
+            android:textColor="@color/white"/>
+        <CheckBox
+            android:id="@+id/chkwe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="We"
+            android:textColor="@color/white"/>
+        <CheckBox
+            android:id="@+id/chkth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Th"
+            android:textColor="@color/white"/>
+        <CheckBox
+            android:id="@+id/chkfr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fr"
+            android:textColor="@color/white"/>
+        <CheckBox
+            android:id="@+id/chksa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sa"
+            android:textColor="@color/white"/>
+
+
+
+    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="5dp"
             >
 
             <TextView
@@ -215,9 +280,10 @@ android:layout_below="@+id/Category"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
-            <EditText
+            <TextView
                 android:id="@+id/etChooseTime"
                 android:layout_width="150dp"
+                android:height="30dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/white"
                 android:layout_marginTop="5dp"
@@ -225,6 +291,8 @@ android:layout_below="@+id/Category"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:hint="  Pick time"
+                android:gravity="center"
+                android:textSize="15dp"
                 android:drawableLeft="@mipmap/time"
                 android:textColorHint="@color/white"/>
             <TextView
@@ -232,19 +300,24 @@ android:layout_below="@+id/Category"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
                 android:text=" To:-"
+                android:layout_marginTop="1dp"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
-            <EditText
+            <TextView
                 android:id="@+id/etChooseTime1"
                 android:layout_width="150dp"
+                android:height="30dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/white"
                 android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:hint="  Pick time"
+                android:hint=" Pick time"
+                android:textSize="15dp"
+                android:textAlignment="center"
+                android:gravity="center"
                 android:drawableLeft="@mipmap/time"
                 android:textColorHint="@color/white"/>
         </LinearLayout>
@@ -268,6 +341,7 @@ android:layout_below="@+id/Category"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:id="@+id/ew"
+            android:inputType="text"
             android:drawableLeft="@mipmap/url_icon"
             />
 
