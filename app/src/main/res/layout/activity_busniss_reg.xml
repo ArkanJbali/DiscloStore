@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@drawable/grad_bg"
+    android:background="@drawable/gradient_bg"
     tools:context=".registration">
     <LinearLayout
         android:layout_width="match_parent"
@@ -125,7 +125,7 @@ android:layout_below="@+id/Category"
             android:paddingRight="15dp"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:id="@+id/elebp"
+            android:id="@+id/ebp"
             android:drawableLeft="@mipmap/telphone_icon"
             />
 

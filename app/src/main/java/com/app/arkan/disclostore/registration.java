@@ -30,7 +30,7 @@ public class registration extends AppCompatActivity {
         confpassword=(EditText)findViewById(R.id.ecp);
         email=(EditText)findViewById(R.id.ee);
         phone=(EditText)findViewById(R.id.eph);
-        location=(EditText)findViewById(R.id.el);
+
         final Drawable customErrorDrawable = getResources().getDrawable(R.drawable.err);
         customErrorDrawable.setBounds(0, 0, customErrorDrawable.getIntrinsicWidth(), customErrorDrawable.getIntrinsicHeight());
 
@@ -71,14 +71,7 @@ public class registration extends AppCompatActivity {
                     email.setBackground(getResources().getDrawable(R.drawable.et_bg));
                     email.setError(null);
                 }
-                if(location.getText().toString().equals("")){
-                    location.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                    location.setError("please enter data",customErrorDrawable);
-                }
-                else {
-                    location.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                    location.setError(null);
-                }
+
                 if(phone.getText().toString().equals("")){
                     phone.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
                     phone.setError("please enter data",customErrorDrawable);

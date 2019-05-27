@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@drawable/grad_bg"
+    android:background="@drawable/gradient_bg"
     tools:context=".registration">
     <ImageView
         android:id="@+id/imgView_logo"
@@ -180,44 +180,14 @@
             />
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/location"
-        android:layout_below="@id/phone"
-        >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:text="location :-"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/et_bg"
-            android:fontFamily="sans-serif-light"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:id="@+id/el"
-            android:drawableLeft="@mipmap/location_icon"
-            />
-
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/er"
-        android:layout_below="@+id/location">
+        android:layout_below="@+id/phone"
+        android:layout_marginTop="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -226,12 +196,15 @@
             android:text="role :-"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+           />
 
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/role"
+         >
 
             <RadioButton
                 android:id="@+id/radio_customer"
@@ -253,9 +226,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@+id/location"
+        android:layout_below="@+id/phone"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/btn_bg"
         android:fontFamily="sans-serif-medium"
         android:paddingLeft="70dp"

@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +37,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class busniss_reg extends Activity implements OnItemSelectedListener ,View.OnClickListener {
     private ImageView profileImageView;
     private Button pickImage;
+    EditText ea,ebp,ef,ebe,ew;
+    Button add;
 
     private static final int SELECT_PHOTO = 1;
     private static final int CAPTURE_PHOTO = 2;
@@ -54,6 +57,32 @@ public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_busniss_reg);
         profileImageView = (ImageView) findViewById(R.id.profileImageView);
         pickImage = (Button) findViewById(R.id.pick_image);
+         ea=(EditText)findViewById(R.id.ea);
+         ebp=(EditText)findViewById(R.id.ebp);
+         ef=(EditText)findViewById(R.id.ef);
+         ebe=(EditText)findViewById(R.id.ebe);
+         ew=(EditText)findViewById(R.id.ew);
+         add=(Button)findViewById(R.id.add);
+         add.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 /*
+                 profileImageView.setDrawingCacheEnabled(true);
+                 profileImageView.buildDrawingCache();
+                 Bitmap bitmap = profileImageView.getDrawingCache();
+                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                 byte[] data = baos.toByteArray();
+                 dbHelper.addToDb(data);
+                 Toast.makeText(getApplicationContext(), "Image saved to DB successfully", Toast.LENGTH_SHORT).show();
+                 if (check()){
+                     Intent intent=new Intent(busniss_reg.this,catalog.class);
+                 }
+*/
+
+             }
+         });
+
 
         pickImage.setOnClickListener(this);
 
@@ -281,6 +310,14 @@ public void onNothingSelected(AdapterView<?> arg0) {
         byte[] data = baos.toByteArray();
         dbHelper.addToDb(data);
         Toast.makeText(this, "Image saved to DB successfully", Toast.LENGTH_SHORT).show();
+if (check()){
+    Intent intent=new Intent(this,catalog.class);
+}
+    }
+    boolean check(){
 
+        if (ea.getText() == null && ebp.getText() == null && ef == null && ebe.getText() == null && ew.getText() == null)
+        return true;
+        else return false;
     }
 }
