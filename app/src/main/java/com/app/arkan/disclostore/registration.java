@@ -1,6 +1,7 @@
 package com.app.arkan.disclostore;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -13,18 +14,18 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class registration extends AppCompatActivity {
-    int x=0;
-    EditText username,password,confpassword,email,phone,location;
-
-
+    int role=0;
+    EditText username,password,confpassword,email,phone;
+    Button reg;
+    DBAdapter db;
+    RadioButton customerBTN,businessBTN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registeration);
-
-        setContentView(R.layout.activity_registeration);
-        Button reg=(Button)findViewById(R.id.reg);
+        db = new DBAdapter(this);
+         reg=(Button)findViewById(R.id.confirm);
         username=(EditText)findViewById(R.id.eun);
         password=(EditText)findViewById(R.id.ep);
         confpassword=(EditText)findViewById(R.id.ecp);
@@ -80,17 +81,27 @@ public class registration extends AppCompatActivity {
                     phone.setBackground(getResources().getDrawable(R.drawable.et_bg));
                     phone.setError(null);
                 }
-                RadioButton customerBTN = findViewById(R.id.radio_customer);
-                RadioButton businessBTN = findViewById(R.id.radio_business);
+                 customerBTN = findViewById(R.id.radio_customer);
+                 businessBTN = findViewById(R.id.radio_business);
                 if(customerBTN.isChecked()){
-                    x=1;
-                    Toast.makeText(getApplicationContext(),"first one is checked",Toast.LENGTH_SHORT).show();
-                }else if(businessBTN.isChecked()){
-                    x=2;
-                    Toast.makeText(getApplicationContext(),"second one is checked",Toast.LENGTH_SHORT).show();
-                }
+                    role=1;
 
-                if (x==2){
+                }else if(businessBTN.isChecked()){
+                    role=2;
+                }
+                if(!username.getText().toString().equals("") && !password.getText().toString().equals("") &&
+                        !confpassword.getText().toString().equals("") && !email.getText().toString().equals("") &&
+                        !phone.getText().toString().equals("")){
+                    if(!CheckUserRegister()) {
+                        userRegistration();
+                        Toast.makeText(getApplicationContext(),"User Added Successfully",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(registration.this, login.class);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Email already used",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if (role==2){
                     Intent intent=new Intent(registration.this,busniss_reg.class);
                     startActivity(intent);
                 }
@@ -98,18 +109,51 @@ public class registration extends AppCompatActivity {
         });
 
     }
+    public boolean CheckUserRegister(){
+        db.open();
+        EditText email = findViewById(R.id.ee);
+        String mail=email.getText().toString();
+        Cursor c = db.CheckUserRegister(mail);
+        if (c.moveToFirst())
+        {
+            do {
+                if(c.getString(0).equals(mail)){
+                    return true;
+                }
+            } while (c.moveToNext());
+        }
+        db.close();
+        return false;
+    }
+    public void userRegistration(){
+        String un = username.getText().toString();
+        String pw = password.getText().toString();
+        String cpw = confpassword.getText().toString();
+        String mail = email.getText().toString();
+        String ph = phone.getText().toString();
+        if(pw.equals(cpw)) {
+            db.open();
+            //role 1-user 2-ownership
+            long s1 = db.insertUser(un, mail, pw, ph, role);
+            Toast.makeText(getApplicationContext(), s1  + "Users added", Toast.LENGTH_LONG).show();
+            db.close();
+        }
+        if(!pw.equals(cpw)){
+            Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_LONG).show();
+        }
+    }
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 
         switch(view.getId()) {
             case R.id.radio_customer:
                 if (checked)
-                    x=1;
+                    role=1;
                 Toast.makeText(getApplicationContext(),"first one is checked",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.radio_business:
                 if (checked)
-                    x=2;
+                    role=2;
                 Toast.makeText(getApplicationContext(),"second one is checked",Toast.LENGTH_SHORT).show();
                 break;
         }

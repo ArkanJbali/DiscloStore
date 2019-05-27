@@ -239,7 +239,17 @@ public class DBAdapter {
         }
         return mCursor;
     }
-
+    public Cursor CheckUserRegister(String email) throws SQLException
+    {
+        Cursor mCursor =
+                db.query(true, DATABASE_USER_TABLE, new String[] {KEY_EMAIL},
+                        KEY_EMAIL + " = '"+ email+"'", null,
+                        null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
     public boolean updateOwnership(String rowId, int category, String image, String openday, String fax, String bphone, String bemail, String url, String location)
     {
         ContentValues initialValues = new ContentValues();

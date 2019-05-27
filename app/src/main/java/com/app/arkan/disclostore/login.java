@@ -47,7 +47,7 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(login.this,registration.class));
-                overridePendingTransition(R.anim.slide_out_left, R.anim.hold);
+                overridePendingTransition(R.anim.slide_out_left, R.anim.fade_in);
             }
         });
         loginBTN.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +75,7 @@ public class login extends AppCompatActivity {
                    if( CheckUserLogin()) {
                        if(ROLE_FLAG == 1) {
                            startActivity(new Intent(login.this, catalog.class));
-                           overridePendingTransition(R.anim.slide_out_left, R.anim.hold);
+                           overridePendingTransition(R.anim.slide_out_left, R.anim.fade_in);
                        }
                        if(ROLE_FLAG == 2) {
                            Toast.makeText(getApplicationContext(),"Go to ownership activity", Toast.LENGTH_LONG).show();

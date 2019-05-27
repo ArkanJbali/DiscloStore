@@ -196,7 +196,7 @@ public void onNothingSelected(AdapterView<?> arg0) {
     }
 
     public void setProgressBar(){
-        progressBar = new ProgressDialog(this);
+        progressBar = new ProgressDialog(this,R.style.AppCompatAlertDialogStyle);
         progressBar.setCancelable(true);
         progressBar.setMessage("Please wait...");
         progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
