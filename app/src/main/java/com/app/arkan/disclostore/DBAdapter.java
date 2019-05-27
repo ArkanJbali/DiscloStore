@@ -8,13 +8,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBAdapter {
+    //users table
+    static final String DATABASE_USER_TABLE = "users";
     static final String KEY_ROWID = "_id";
-    static final String KEY_USER_NAME = "name";
+    static final String KEY_USER_NAME = "username";
     static final String KEY_EMAIL = "email";
     static final String KEY_PASSWORD = "password";
     static final String KEY_PHONE= "phone";
     static final String KEY_ROLE = "role";
 
+    //ownership table
+    static final String DATABASE_BUSINESS_TABLE = "ownership";
     static final String KEY_ROWID2 = "_id";
     static final String KEY_CATEGORY = "category";
     static final String KEY_IMAGE = "image";
@@ -25,26 +29,48 @@ public class DBAdapter {
     static final String KEY_EMAIL_B= "bemail";
     static final String KEY_URL = "url";
     static final String KEY_LOCATION = "location";
+
+    //catagories
+    static final String DATABASE_CATEGORY_TABLE = "categories";
+    static final String KEY_ROWID3 = "_id";
+    static final String KEY_CATEGORY_ID = "categoryid";
+
+    //storeinfo
+    static final String DATABASE_STORE_TABLE = "storeinfo";
+    static final String KEY_ROWID4 = "_id";
+    static final String KEY_CATEGORYs_ID = "categoryid";
+    static final String KEY_SOTRE_NAME = "storename";
+    static final String KEY_RATING = "rating";
+
+
     static final String TAG = "DBAdapter";
-
     static final String DATABASE_NAME = "DiscloStoreDB";
-    static final String DATABASE_USER_TABLE = "users";
-    static final String DATABASE_BUSINESS_TABLE = "business";
-
     static final int DATABASE_VERSION = 1;
 
     static final String DATABASE_CREATE_USERS =
             "create table users (_id integer primary key autoincrement, "
-                    + "name text not null, email text not null, password text not null, phone text not null, role text not null);";
-    static final String DATABASE_CREATE_BUSINESS =
-            "create table business (_id integer primary key autoincrement, "
-                    + "category text not null, image text not null, " +
-                    "about text not null, openday text not null, fax text not null, bphone text not null, url text not null," +
-                    "location text not null" +
-                    ",bemail text not null, password text not null, phone text not null, role text not null);";
+                    + "username text not null, email text not null, password text not null, phone text not null, role int not null);";
+
+
+    static final String DATABASE_CREATE_OWNERSHIP =
+            "create table ownership (_id integer primary key autoincrement, "
+                    + "category integer not null, image text not null, " +
+                    "about text not null, fax text not null,bphone text not null, bemail text not null, " +
+                    "openday text not null,  url text not null," +
+                    "location text not null);";
+
+    static final String DATABASE_CREATE_CATEGORIES =
+            "create table categories (_id integer primary key autoincrement, "
+                    + "categoryid integer not null);";
+
+    static final String DATABASE_CREATE_STOREINFO =
+            "create table storeinfo (_id integer primary key autoincrement, "
+                    + "categoryid integer not null, storename text not null, rating integer not null);";
+
+    //static final String ALTER_OWNERSHIP_ADD_FK = "ALTER TABLE ownership ADD FOREIGN KEY (category) REFERENCES categories(id)";
+   // static final String ALTER_CATEGORIES_ADD_FK = "ALTER TABLE categories ADD FOREIGN KEY (categoryid) REFERENCES storeinfo(id)";
 
     final Context context;
-
     DatabaseHelper DBHelper;
     SQLiteDatabase db;
 
@@ -66,7 +92,11 @@ public class DBAdapter {
         {
             try {
                 db.execSQL(DATABASE_CREATE_USERS);
-                db.execSQL(DATABASE_CREATE_BUSINESS);
+                db.execSQL(DATABASE_CREATE_OWNERSHIP);
+                db.execSQL(DATABASE_CREATE_CATEGORIES);
+                db.execSQL(DATABASE_CREATE_STOREINFO);
+             //   db.execSQL(ALTER_CATEGORIES_ADD_FK);
+             //   db.execSQL(ALTER_OWNERSHIP_ADD_FK);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -75,10 +105,12 @@ public class DBAdapter {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
         {
-            //Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
-                  //  + newVersion + ", which will destroy all old data");
             db.execSQL("DROP TABLE IF EXISTS users");
-            db.execSQL("DROP TABLE IF EXISTS business");
+            db.execSQL("DROP TABLE IF EXISTS ownership");
+            db.execSQL("DROP TABLE IF EXISTS categories");
+            db.execSQL("DROP TABLE IF EXISTS storeinfo");
+          //  db.execSQL(ALTER_CATEGORIES_ADD_FK);
+         //   db.execSQL(ALTER_OWNERSHIP_ADD_FK);
             onCreate(db);
         }
     }
@@ -96,10 +128,11 @@ public class DBAdapter {
         DBHelper.close();
     }
 
-    public long insertBusiness(String category, String image, String openday, String fax, String bphone, String bemail, String url, String location)
+    public long insertOwnership(int category, String about, String image, String openday, String fax, String bphone, String bemail, String url, String location)
     {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_CATEGORY, category);
+        initialValues.put(KEY_ABOUT, about);
         initialValues.put(KEY_EMAIL_B, bemail);
         initialValues.put(KEY_IMAGE, image);
         initialValues.put(KEY_PHONE_B, bphone);
@@ -107,9 +140,9 @@ public class DBAdapter {
         initialValues.put(KEY_OPEN_DAY, openday);
         initialValues.put(KEY_FAX, fax);
         initialValues.put(KEY_LOCATION, location);
-        return db.insert(DATABASE_USER_TABLE, null, initialValues);
+        return db.insert(DATABASE_BUSINESS_TABLE, null, initialValues);
     }
-    public long insertUser(String name, String email, String password, String phone, String role)
+    public long insertUser(String name, String email, String password, String phone, int role)
     {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_USER_NAME, name);
@@ -119,28 +152,49 @@ public class DBAdapter {
         initialValues.put(KEY_ROLE, role);
         return db.insert(DATABASE_USER_TABLE, null, initialValues);
     }
-
+    public long insertCategory(int category)
+    {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_CATEGORY_ID, category);
+        return db.insert(DATABASE_CATEGORY_TABLE, null, initialValues);
+    }
+    public long insertStoreinfo(int category, String storename, int rating)
+    {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_CATEGORYs_ID, category);
+        initialValues.put(KEY_SOTRE_NAME, storename);
+        initialValues.put(KEY_RATING, rating);
+        return db.insert(DATABASE_STORE_TABLE, null, initialValues);
+    }
 
     public boolean deleteUser(long rowId)
     {
         return db.delete(DATABASE_USER_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
     }
-    public boolean deleteBusiness(long rowId)
+    public boolean deleteOwnership(long rowId)
     {
         return db.delete(DATABASE_BUSINESS_TABLE, KEY_ROWID2 + "=" + rowId, null) > 0;
     }
     public Cursor getAllUsers()
     {
-        return db.query(DATABASE_USER_TABLE, new String[] {KEY_ROWID, KEY_EMAIL,
-        KEY_PASSWORD, KEY_USER_NAME, KEY_PHONE, KEY_ROLE}, null, null, null, null, null);
+        return db.query(DATABASE_USER_TABLE, new String[] {KEY_ROWID, KEY_USER_NAME, KEY_EMAIL,
+        KEY_PASSWORD, KEY_PHONE, KEY_ROLE}, null, null, null, null, null);
     }
-    public Cursor getAllBusiness()
+    public Cursor getAllCategories()
+    {
+        return db.query(DATABASE_CATEGORY_TABLE, new String[] {KEY_ROWID3, KEY_CATEGORY_ID}, null, null, null, null, null);
+    }
+    public Cursor getAllStore()
+    {
+        return db.query(DATABASE_STORE_TABLE, new String[] {KEY_ROWID4, KEY_CATEGORYs_ID, KEY_SOTRE_NAME, KEY_RATING}, null, null, null, null, null);
+    }
+    public Cursor getAllOwnership()
     {
         return db.query(DATABASE_BUSINESS_TABLE, new String[] {KEY_ROWID2,KEY_CATEGORY,KEY_IMAGE,KEY_ABOUT,
-                KEY_OPEN_DAY, KEY_FAX, KEY_PHONE_B,KEY_EMAIL_B,
+                 KEY_FAX, KEY_PHONE_B,KEY_EMAIL_B,KEY_OPEN_DAY,
                 KEY_URL,KEY_LOCATION}, null, null, null, null, null);
     }
-    public Cursor getBusiness(long rowId) throws SQLException
+    public Cursor getOwnership(long rowId) throws SQLException
     {
         Cursor mCursor =
                 db.query(true, DATABASE_USER_TABLE, new String[] {KEY_ROWID2,KEY_CATEGORY,KEY_IMAGE,KEY_ABOUT,
@@ -163,9 +217,30 @@ public class DBAdapter {
         }
         return mCursor;
     }
+    public Cursor CheckUser(String email) throws SQLException
+    {
+        Cursor mCursor =
+                db.query(true, DATABASE_USER_TABLE, new String[] {KEY_EMAIL,KEY_PASSWORD,KEY_ROLE},
+                        KEY_EMAIL + " = '"+ email+"' AND "+KEY_PASSWORD , null,
+                        null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
+    public Cursor CheckUserLogin(String email, String password) throws SQLException
+    {
+        Cursor mCursor =
+                db.query(true, DATABASE_USER_TABLE, new String[] {KEY_EMAIL,KEY_PASSWORD,KEY_ROLE},
+                        KEY_EMAIL + " = '"+ email+"' AND "+KEY_PASSWORD + " = '" + password+"'", null,
+                        null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
 
-
-    public boolean updateBusiness(String rowId, String category, String image, String openday, String fax, String bphone, String bemail, String url, String location)
+    public boolean updateOwnership(String rowId, int category, String image, String openday, String fax, String bphone, String bemail, String url, String location)
     {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_CATEGORY, category);
@@ -178,7 +253,7 @@ public class DBAdapter {
         initialValues.put(KEY_LOCATION, location);
         return db.update(DATABASE_BUSINESS_TABLE, initialValues, KEY_ROWID + "=" + rowId, null) > 0;
     }
-    public boolean updateUser(long rowId, String name, String email, String password, String phone, String role)
+    public boolean updateUser(long rowId, String name, String email, String password, String phone, int role)
     {
         ContentValues args = new ContentValues();
         args.put(KEY_USER_NAME, name);

@@ -1,5 +1,6 @@
 package com.app.arkan.disclostore;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -10,11 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class login extends AppCompatActivity {
     EditText un,pass;
     RelativeLayout rellay1, rellay2;
-
+    static int ROLE_FLAG=0;
     Handler handler = new Handler();
     Runnable runnable = new Runnable() {
         @Override
@@ -23,11 +25,14 @@ public class login extends AppCompatActivity {
             rellay2.setVisibility(View.VISIBLE);
         }
     };
-
+    DBAdapter db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        db = new DBAdapter(this);
+
         rellay1 =  findViewById(R.id.rellay1);
         rellay2 =  findViewById(R.id.rellay2);
         un = findViewById(R.id.un);
@@ -67,12 +72,41 @@ public class login extends AppCompatActivity {
 
                 }
                 if(!un.getText().toString().equals("") && !pass.getText().toString().equals("")){
-                    startActivity(new Intent(login.this,catalog.class));
-                    overridePendingTransition(R.anim.slide_out_left, R.anim.hold);
-
+                   if( CheckUserLogin()) {
+                       if(ROLE_FLAG == 1) {
+                           startActivity(new Intent(login.this, catalog.class));
+                           overridePendingTransition(R.anim.slide_out_left, R.anim.hold);
+                       }
+                       if(ROLE_FLAG == 2) {
+                           Toast.makeText(getApplicationContext(),"Go to ownership activity", Toast.LENGTH_LONG).show();
+                       }
+                   }else{
+                       Toast.makeText(getApplicationContext(),"Invalid UserName or Password !!!", Toast.LENGTH_LONG).show();
+                   }
                 }
 
             }
         });
+    }
+
+    public boolean CheckUserLogin(){
+        db.open();
+        EditText email = findViewById(R.id.un);
+        EditText pass = findViewById(R.id.pw);
+        String mail=email.getText().toString();
+        String password = pass.getText().toString();
+        Cursor c = db.CheckUserLogin(mail,password);
+        if (c.moveToFirst())
+        {
+            do {
+                if(c.getString(0).equals(mail) && c.getString(1).equals(password)){
+                 //   Toast.makeText(getApplicationContext(),"Logged in"+c.getString(2),Toast.LENGTH_LONG).show();
+                    ROLE_FLAG = Integer.valueOf(c.getString(2));
+                    return true;
+                }
+            } while (c.moveToNext());
+        }
+        db.close();
+        return false;
     }
 }

@@ -1,7 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/toy">
+    >
+<Button
+    android:id="@+id/add"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Add Users"
+    android:onClick="addUser"/>
+    <Button
+        android:layout_below="@+id/add"
+        android:id="@+id/show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Users"
+        android:onClick="getUsers"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:layout_below="@+id/show"
+        android:id="@+id/add2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Ownership"
+        android:onClick="addOwnership"/>
+    <Button
+        android:layout_below="@+id/add2"
+        android:id="@+id/show2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Ownership"
+        android:onClick="getOwnership"/>
+    <EditText
+        android:id="@+id/email"
+        android:layout_below="@id/show2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_below="@+id/email"
+        android:id="@+id/check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log in"
+        android:onClick="CheckUsers"/>
+</RelativeLayout>

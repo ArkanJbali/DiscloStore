@@ -41,7 +41,6 @@ public class listShops extends AppCompatActivity {
         }
     }
     public void openRatingDialog(View v){
-       // startActivity(new Intent(listShops.this,Main.class));
         GlobalUtils.showDialog(this, new DialogCallback() {
             @Override
             public void callback(int ratings) {
