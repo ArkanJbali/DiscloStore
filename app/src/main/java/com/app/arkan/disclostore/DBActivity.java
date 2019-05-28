@@ -19,6 +19,12 @@ public class DBActivity extends Activity {
 
 
     }
+    public void upd(View v){
+        db.open();
+        //db.updateTable();
+       db.insertStoreinfo(1,"test",0,0);
+        db.close();
+    }
     public void addUser(View v){
         db.open();
         //role 1-user 2-ownership
@@ -85,12 +91,49 @@ public class DBActivity extends Activity {
         }
         db.close();
     }
+    public void getStores(View v){
+        db.open();
+        Cursor c = db.getAllStore();
+        if (c.moveToFirst())
+        {
+            do {
+                DisplayStores(c);
+            } while (c.moveToNext());
+        }
+        db.close();
+    }
+    public void DisplayStores(Cursor c)
+    {
+        Toast.makeText(this,
+                "id: " + c.getString(0) + "\n" +
+                        "Category ID: " + c.getString(1) + "\n" +
+                        "Store Name:  " + c.getString(2)+ "\n" +
+                        "Rating:  " + c.getString(3)+ "\n" +
+                        "Rates Count:  " + c.getString(4)+ "\n", Toast.LENGTH_LONG).show();
+    }
+    public void getCategories(View v){
+        db.open();
+        Cursor c = db.getAllCategories();
+        if (c.moveToFirst())
+        {
+            do {
+                DisplayCategories(c);
+            } while (c.moveToNext());
+        }
+        db.close();
+    }
+    public void DisplayCategories(Cursor c)
+    {
+        Toast.makeText(this,
+                "id: " + c.getString(0) + "\n" +
+                        "Category ID: " + c.getString(1) + "\n", Toast.LENGTH_LONG).show();
+    }
     public void DisplayOwnership(Cursor c)
     {
         Toast.makeText(this,
                 "id: " + c.getString(0) + "\n" +
                         "Category: " + c.getString(1) + "\n" +
-                        "Image:  " + c.getString(2)+ "\n" +
+//                        "Image:  " + c.getString(2)+ "\n" +
                         "About:  " + c.getString(3)+ "\n" +
                         "fax:  " + c.getString(4)+ "\n" +
                         "Bphone:  " + c.getString(5)+ "\n"+
@@ -103,5 +146,7 @@ public class DBActivity extends Activity {
         db.open();
        long s= db.getShopsCount("s");
         Toast.makeText(getApplicationContext(),"count= "+s,Toast.LENGTH_LONG).show();
+        db.close();
     }
+
 }

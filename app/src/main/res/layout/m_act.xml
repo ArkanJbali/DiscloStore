@@ -51,4 +51,27 @@
         android:layout_height="wrap_content"
         android:text="get count"
         android:onClick="getCount"/>
+
+    <Button
+        android:layout_below="@+id/count"
+        android:id="@+id/stores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="get stores"
+        android:onClick="getStores"/>
+    <Button
+        android:layout_below="@id/count"
+        android:layout_toRightOf="@+id/stores"
+        android:id="@+id/Category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="get categories"
+        android:onClick="getCategories"/>
+    <Button
+        android:layout_below="@id/Category"
+        android:id="@+id/upd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="refactoring DB"
+        android:onClick="upd"/>
 </RelativeLayout>

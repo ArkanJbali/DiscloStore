@@ -43,29 +43,16 @@ import android.webkit.WebView;
 public class busniss_reg extends Activity implements OnItemSelectedListener ,View.OnClickListener {
     private ImageView profileImageView;
     private Button pickImage;
-    EditText ea,ebp,ef,ebe,ew;
+    EditText ea,ebp,ef,ebe,ew,esn;
     Button add;
-    TextView chooseTime ;
-    TextView chooseTime1 ;
-    CheckBox su;
-    CheckBox mo;
-    CheckBox tu;
-    CheckBox we;
-    CheckBox th ;
-    CheckBox fr;
-    CheckBox sa;
+    TextView chooseTime,chooseTime1 ;
+    CheckBox su, mo, tu, we, th ,fr, sa;
     String data="";
-    String day="";
-    String cat="";
-    String about="";
-    String bphone="";
-    String fax="";
-    String bemail="";
-    String web="";
-    String time="";
+    String day="", about="", bphone="", fax="", bemail="", web="", time="", storename="";
+    int cat = 0;
     private static final int SELECT_PHOTO = 1;
     private static final int CAPTURE_PHOTO = 2;
-
+    DBAdapter db;
     private ProgressDialog progressBar;
     private int progressBarStatus = 0;
     private Handler progressBarbHandler = new Handler();
@@ -78,6 +65,7 @@ public class busniss_reg extends Activity implements OnItemSelectedListener ,Vie
 public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busniss_reg);
+        db = new DBAdapter(this);
         chooseTime=(TextView)findViewById(R.id.etChooseTime);
         chooseTime1=(TextView)findViewById(R.id.etChooseTime1);
         profileImageView = (ImageView) findViewById(R.id.profileImageView);
@@ -87,6 +75,7 @@ public void onCreate(Bundle savedInstanceState) {
          ef=(EditText)findViewById(R.id.ef);
          ebe=(EditText)findViewById(R.id.ebe);
          ew=(EditText)findViewById(R.id.ew);
+         esn=findViewById(R.id.esn);
          add=(Button)findViewById(R.id.add);
          su=(CheckBox)findViewById(R.id.chksu);
          mo=(CheckBox)findViewById(R.id.chkmo);
@@ -100,21 +89,9 @@ public void onCreate(Bundle savedInstanceState) {
         add.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 dis();
-                 /*
-                 profileImageView.setDrawingCacheEnabled(true);
-                 profileImageView.buildDrawingCache();
-                 Bitmap bitmap = profileImageView.getDrawingCache();
-                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                 byte[] data = baos.toByteArray();
-                 dbHelper.addToDb(data);
-                 Toast.makeText(getApplicationContext(), "Image saved to DB successfully", Toast.LENGTH_SHORT).show();
-                 if (check()){
-                     Intent intent=new Intent(busniss_reg.this,catalog.class);
-                 }
-*/
-
+                 storeData();
+                 Intent intent = new Intent(busniss_reg.this, login.class);
+                 startActivity(intent);
              }
          });
         chooseTime.setOnClickListener(new View.OnClickListener() {
@@ -197,10 +174,10 @@ public void onCreate(Bundle savedInstanceState) {
 @Override
 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString()+id;
-cat=item;
+        int item =(int)(id+1);
+        cat=item;
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        //Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
         }
 public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
@@ -213,11 +190,7 @@ public void onNothingSelected(AdapterView<?> arg0) {
             case R.id.pick_image:
                 final Dialog dialog = new Dialog(this);
                 dialog.setContentView(R.layout.dialog_act);
-                dialog.setTitle("Title...");
-
-
-
-
+               // dialog.setTitle("Title...");
                 Button pickImage = (Button) dialog.findViewById(R.id.pickFromGallery);
                 // if button is clicked, close the custom dialog
                 pickImage.setOnClickListener(new View.OnClickListener() {
@@ -362,33 +335,42 @@ public void onNothingSelected(AdapterView<?> arg0) {
 
     }
 
-    public void addToDb(View view){
-        profileImageView.setDrawingCacheEnabled(true);
-        profileImageView.buildDrawingCache();
-        Bitmap bitmap = profileImageView.getDrawingCache();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] data = baos.toByteArray();
-        dbHelper.addToDb(data);
-        Toast.makeText(this, "Image saved to DB successfully", Toast.LENGTH_SHORT).show();
-if (check()){
-    Intent intent=new Intent(this,catalog.class);
-}
-    }
-    boolean check(){
+   public void storeData(){
+       if(su.isChecked()){ day+="Su ,";}
+       if(mo.isChecked()){ day+="Mo ,";}
+       if(tu.isChecked()){ day+="Tu ,";}
+       if(we.isChecked()){ day+="We ,";}
+       if(th.isChecked()){ day+="Th ,";}
+       if(fr.isChecked()){ day+="Fr ,";}
+       if(sa.isChecked()){ day+="Sa ,";}
+        db.open();
+       profileImageView.setDrawingCacheEnabled(true);
+       profileImageView.buildDrawingCache();
+       Bitmap bitmap = profileImageView.getDrawingCache();
+       ByteArrayOutputStream baos = new ByteArrayOutputStream();
+       bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+       byte[] data = baos.toByteArray();
 
-        if (ea.getText() == null && ebp.getText() == null && ef == null && ebe.getText() == null && ew.getText() == null)
-        return true;
-        else return false;
-    }
+       Toast.makeText(this, "Image saved to DB successfully", Toast.LENGTH_SHORT).show();
+
+        db.insertOwnership(cat,ea.getText().toString(),data,day,ef.getText().toString(),ebp.getText().toString(),
+                ebe.getText().toString(), ew.getText().toString(),"location not ready");
+
+        db.insertCategory(cat);
+
+        db.insertStoreinfo(cat,esn.getText().toString(),0,0);
+
+       Toast.makeText(this, "Data saved to DB successfully", Toast.LENGTH_SHORT).show();
+        db.close();
+   }
     public void dis(){
-     if(su.isChecked()){ day+="Su ,";}
-     if(mo.isChecked()){ day+="Mo ,";}
-     if(tu.isChecked()){ day+="Tu ,";}
-     if(we.isChecked()){ day+="We ,";}
-     if(th.isChecked()){ day+="Th ,";}
-     if(fr.isChecked()){ day+="Fr ,";}
-     if(sa.isChecked()){ day+="Sa ,";}
+        if(su.isChecked()){ day+="Su ,";}
+        if(mo.isChecked()){ day+="Mo ,";}
+        if(tu.isChecked()){ day+="Tu ,";}
+        if(we.isChecked()){ day+="We ,";}
+        if(th.isChecked()){ day+="Th ,";}
+        if(fr.isChecked()){ day+="Fr ,";}
+        if(sa.isChecked()){ day+="Sa ,";}
     time=chooseTime.getText().toString()+"-"+chooseTime1.getText().toString();
      about=ea.getText().toString();
      bphone=ebp.getText().toString();

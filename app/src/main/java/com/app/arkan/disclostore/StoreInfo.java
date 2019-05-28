@@ -22,15 +22,18 @@ import java.util.List;
 
 public class StoreInfo extends AppCompatActivity {
     Button gotourl;
-    private TextView stickyView;
-    private ListView listView;
-    private View heroImageView;
-    private View stickyViewSpacer;
-    private int MAX_ROWS = 20;
+    TextView header,about,openday,contact,location;
+    String url = " ";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_info);
+        header = findViewById(R.id.header);
+        about = findViewById(R.id.about);
+        openday = findViewById(R.id.opens);
+        contact = findViewById(R.id.contacts_i);
+        location = findViewById(R.id.location_i);
+
         gotourl=(Button)findViewById(R.id.gotourl);
         gotourl.setOnClickListener(new View.OnClickListener() {
             @Override

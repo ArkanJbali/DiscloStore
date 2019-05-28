@@ -214,7 +214,7 @@
                     android:layout_toRightOf="@+id/contactImg"
                     android:layout_toEndOf="@+id/contactImg"/>
                 <TextView
-                    android:id="@+id/phone"
+                    android:id="@+id/contacts_i"
                     android:layout_below="@+id/contact"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
@@ -226,32 +226,7 @@
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/contactImg"
                     android:layout_toEndOf="@+id/contactImg"/>
-                <TextView
-                    android:id="@+id/fax"
-                    android:layout_below="@+id/phone"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Phone: +972-00023333"
-                    android:textColor="@android:color/white"
-                    app:fontFamily="casual"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    android:layout_toRightOf="@+id/contactImg"
-                    android:layout_toEndOf="@+id/contactImg"/>
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_below="@+id/fax"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email: arkan.1997@gmail.com"
-                    android:textColor="@android:color/white"
-                    app:fontFamily="casual"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    android:layout_toRightOf="@+id/contactImg"
-                    android:layout_toEndOf="@+id/contactImg"/>
+
 
 
             </RelativeLayout>
@@ -280,6 +255,7 @@
                     android:contentDescription="@string/img" />
 
                 <TextView
+                    android:id="@+id/location"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -287,6 +263,19 @@
                     android:textColor="@android:color/white"
                     app:fontFamily="casual"
                     android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@+id/locationImg"
+                    android:layout_toEndOf="@+id/locationImg"/>
+                <TextView
+                    android:id="@+id/location_i"
+                    android:layout_below="@+id/location"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone: +972-0524033910"
+                    android:textColor="@android:color/white"
+                    app:fontFamily="casual"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/locationImg"
                     android:layout_toEndOf="@+id/locationImg"/>

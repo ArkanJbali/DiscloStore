@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.Toast;
 
 public class DBAdapter {
     //users table
@@ -41,6 +44,8 @@ public class DBAdapter {
     static final String KEY_CATEGORYs_ID = "categoryid";
     static final String KEY_SOTRE_NAME = "storename";
     static final String KEY_RATING = "rating";
+    static final String KEY_RATING_COUNTER = "ratecounter";
+
 
 
     static final String TAG = "DBAdapter";
@@ -65,7 +70,7 @@ public class DBAdapter {
 
     static final String DATABASE_CREATE_STOREINFO =
             "create table storeinfo (_id integer primary key autoincrement, "
-                    + "categoryid integer not null, storename text not null, rating integer not null);";
+                    + "categoryid integer not null, storename text not null, rating integer not null, ratecounter integer not null);";
 
     //static final String ALTER_OWNERSHIP_ADD_FK = "ALTER TABLE ownership ADD FOREIGN KEY (category) REFERENCES categories(id)";
    // static final String ALTER_CATEGORIES_ADD_FK = "ALTER TABLE categories ADD FOREIGN KEY (categoryid) REFERENCES storeinfo(id)";
@@ -109,6 +114,10 @@ public class DBAdapter {
             db.execSQL("DROP TABLE IF EXISTS ownership");
             db.execSQL("DROP TABLE IF EXISTS categories");
             db.execSQL("DROP TABLE IF EXISTS storeinfo");
+
+//            if (newVersion > oldVersion) {
+//                db.execSQL("ALTER TABLE storeinfo ADD COLUMN ratecounter INTEGER DEFAULT 0");
+//            }
           //  db.execSQL(ALTER_CATEGORIES_ADD_FK);
          //   db.execSQL(ALTER_OWNERSHIP_ADD_FK);
             onCreate(db);
@@ -126,6 +135,12 @@ public class DBAdapter {
     public void close()
     {
         DBHelper.close();
+    }
+
+    public void updateTable(){
+       // db.execSQL("ALTER TABLE foo ADD COLUMN new_column INTEGER DEFAULT 0");
+        //db.execSQL("DROP TABLE IF EXISTS '" + DATABASE_STORE_TABLE + "'");
+       // db.execSQL(DATABASE_CREATE_STOREINFO);
     }
 
     public long insertOwnership(int category, String about, byte[] image, String openday, String fax, String bphone, String bemail, String url, String location)
@@ -158,12 +173,13 @@ public class DBAdapter {
         initialValues.put(KEY_CATEGORY_ID, category);
         return db.insert(DATABASE_CATEGORY_TABLE, null, initialValues);
     }
-    public long insertStoreinfo(int category, String storename, int rating)
+    public long insertStoreinfo(int category, String storename, int rating, int counter)
     {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_CATEGORYs_ID, category);
         initialValues.put(KEY_SOTRE_NAME, storename);
         initialValues.put(KEY_RATING, rating);
+        initialValues.put(KEY_RATING_COUNTER, counter);
         return db.insert(DATABASE_STORE_TABLE, null, initialValues);
     }
 
@@ -186,7 +202,7 @@ public class DBAdapter {
     }
     public Cursor getAllStore()
     {
-        return db.query(DATABASE_STORE_TABLE, new String[] {KEY_ROWID4, KEY_CATEGORYs_ID, KEY_SOTRE_NAME, KEY_RATING}, null, null, null, null, null);
+        return db.query(DATABASE_STORE_TABLE, new String[] {KEY_ROWID4, KEY_CATEGORYs_ID, KEY_SOTRE_NAME, KEY_RATING, KEY_RATING_COUNTER}, null, null, null, null, null);
     }
     public Cursor getAllOwnership()
     {
@@ -274,20 +290,85 @@ public class DBAdapter {
         return db.update(DATABASE_USER_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
 
-    public boolean updateRating(long rowId, int rating)
+    public boolean updateRating(long rowId, int rating, int counter)
     {
         ContentValues args = new ContentValues();
         args.put(KEY_RATING, rating);
+        args.put(KEY_RATING_COUNTER, counter);
         return db.update(DATABASE_STORE_TABLE, args, KEY_ROWID4 + "=" + rowId, null) > 0;
     }
 
-    public long getShopsCount(String storename){
-        String countQuery = "SELECT  * FROM " + DATABASE_USER_TABLE + " where " + " = " + storename ;
+    public long getShopsCount(String category){
+        String countQuery = "SELECT  * FROM " + DATABASE_STORE_TABLE + " where " + KEY_SOTRE_NAME + " = '" + category +"'" ;
          db = DBHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();
         cursor.close();
         return count;
+    }
+//    public long getShopRateCount(String storename){
+//        long count = 0;
+//        db = DBHelper.getReadableDatabase();
+//        Cursor crs = db.rawQuery("SELECT  * FROM " + DATABASE_STORE_TABLE + " where " + KEY_SOTRE_NAME + " = " + storename , null);
+//        crs.moveToFirst();
+//        while (crs.isAfterLast() == false){
+//            count+= Integer.valueOf(crs.getString(4));
+//            crs.moveToNext();
+//        }
+//        return count;
+//    }
+
+    public long getShopRateSum(String storename){
+        long sumRate = 0;
+        long count = 0;
+        db = DBHelper.getReadableDatabase();
+        Cursor crs = db.rawQuery("SELECT  * FROM " + DATABASE_STORE_TABLE + " where " + KEY_SOTRE_NAME + " = '" + storename +"'" , null);
+        crs.moveToFirst();
+        while (crs.isAfterLast() == false){
+            sumRate+= Integer.valueOf(crs.getString(3));
+            count=count+ Integer.valueOf(crs.getString(4));
+            crs.moveToNext();
+        }
+        return sumRate/count;
+    }
+    public long getShopId(String storename){
+        long id = 0;
+        db = DBHelper.getReadableDatabase();
+        Cursor crs = db.rawQuery("SELECT  * FROM " + DATABASE_STORE_TABLE + " where " + KEY_SOTRE_NAME + " = '" + storename +"'" , null);
+        crs.moveToFirst();
+        while (crs.isAfterLast() == false){
+            id = Integer.valueOf(crs.getString(0));
+            crs.moveToNext();
+        }
+        return id;
+    }
+    public long getShopCount(String storename){
+        long count = 0;
+        db = DBHelper.getReadableDatabase();
+        Cursor crs = db.rawQuery("SELECT  * FROM " + DATABASE_STORE_TABLE + " where " + KEY_SOTRE_NAME + " = '" + storename +"'", null);
+        crs.moveToFirst();
+        while (crs.isAfterLast() == false){
+            count = Integer.valueOf(crs.getString(4));
+            crs.moveToNext();
+        }
+        return count;
+    }
+    public Bitmap get() {
+        db = DBHelper.getReadableDatabase();
+        Cursor c = db.rawQuery("select image from ownership", null);
+//        while (c.isAfterLast() == false){
+//            byte[] image = c.getBlob(0);
+//            Bitmap bmp= BitmapFactory.decodeByteArray(image, 0 , image.length);
+//            return bmp;
+//        }
+        if(c.moveToNext())
+        {
+            byte[] image = c.getBlob(0);
+            Bitmap bmp= BitmapFactory.decodeByteArray(image, 0 , image.length);
+            return bmp;
+
+        }
+        return null;
     }
 
 

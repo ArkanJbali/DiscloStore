@@ -6,11 +6,15 @@
     >
     <include layout="@layout/app_bar"
         android:id="@+id/app_bar" />
-
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_below="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent">
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/table_ly"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@drawable/btn_bg"
         android:paddingTop="0dip"
         >
@@ -27,7 +31,6 @@
                     android:layout_height="50dp"
                     android:layout_width="50dp"
                     android:layout_marginLeft="15dp"
-
                     android:id="@+id/image3"
                     android:background="@drawable/h_m"
                     />
@@ -49,6 +52,7 @@
                     android:onClick="openRatingDialog"
                     android:id="@+id/rate3"/>
                 <TextView
+                    android:id="@+id/rating"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="13dp"
                     android:layout_width="wrap_content"
@@ -60,4 +64,5 @@
 
         </TableRow>
     </TableLayout>
+    </ScrollView>
 </RelativeLayout>
