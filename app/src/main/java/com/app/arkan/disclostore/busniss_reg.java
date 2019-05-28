@@ -45,9 +45,11 @@ public class busniss_reg extends Activity implements OnItemSelectedListener ,Vie
     private Button pickImage;
     EditText ea,ebp,ef,ebe,ew,esn;
     Button add;
+    Button location;
     TextView chooseTime,chooseTime1 ;
     CheckBox su, mo, tu, we, th ,fr, sa;
     String data="";
+    String sl="";
     String day="", about="", bphone="", fax="", bemail="", web="", time="", storename="";
     int cat = 0;
     private static final int SELECT_PHOTO = 1;
@@ -70,6 +72,7 @@ public void onCreate(Bundle savedInstanceState) {
         chooseTime1=(TextView)findViewById(R.id.etChooseTime1);
         profileImageView = (ImageView) findViewById(R.id.profileImageView);
         pickImage = (Button) findViewById(R.id.pick_image);
+       location = (Button) findViewById(R.id.pick_loc);
          ea=(EditText)findViewById(R.id.ea);
          ebp=(EditText)findViewById(R.id.ebp);
          ef=(EditText)findViewById(R.id.ef);
@@ -85,15 +88,28 @@ public void onCreate(Bundle savedInstanceState) {
          fr=(CheckBox)findViewById(R.id.chkfr);
          sa=(CheckBox)findViewById(R.id.chksa);
 
+        Intent i =getIntent();
+        sl=getIntent().getStringExtra("sl");
+
 
         add.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
+
                  storeData();
                  Intent intent = new Intent(busniss_reg.this, login.class);
                  startActivity(intent);
+                 Toast.makeText(busniss_reg.this, sl, Toast.LENGTH_SHORT).show();
              }
          });
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                storeData();
+                Intent intent = new Intent(busniss_reg.this, STORE_LOCATION.class);
+                startActivity(intent);
+            }
+        });
         chooseTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -385,5 +401,6 @@ public void onNothingSelected(AdapterView<?> arg0) {
         Toast.makeText(this, day, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, time, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, web, Toast.LENGTH_SHORT).show();
+
     }
 }

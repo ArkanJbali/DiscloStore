@@ -19,7 +19,7 @@ public class registration extends AppCompatActivity {
     Button reg;
     DBAdapter db;
     RadioButton customerBTN,businessBTN;
-
+    String emailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +31,7 @@ public class registration extends AppCompatActivity {
         confpassword=(EditText)findViewById(R.id.ecp);
         email=(EditText)findViewById(R.id.ee);
         phone=(EditText)findViewById(R.id.eph);
-
+        final String emailval = email.getText().toString().trim();
         final Drawable customErrorDrawable = getResources().getDrawable(R.drawable.err);
         customErrorDrawable.setBounds(0, 0, customErrorDrawable.getIntrinsicWidth(), customErrorDrawable.getIntrinsicHeight());
 
@@ -65,6 +65,8 @@ public class registration extends AppCompatActivity {
                     confpassword.setError(null);
                 }
                 if(email.getText().toString().equals("")){
+                    Boolean b =emailval.matches(emailPattern);
+                    Toast.makeText(getApplicationContext(), b.toString(), Toast.LENGTH_LONG).show();
                     email.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
                     email.setError("please enter data",customErrorDrawable);
                 }

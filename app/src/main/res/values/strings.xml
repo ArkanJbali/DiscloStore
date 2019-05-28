@@ -24,6 +24,7 @@
     <string name="spinner_title">spinner_title</string>
     <string name="uploadImages">Set your image</string>
     <string name="action_pic">Pictures</string>
+    <string name="title_activity_store__location">Map</string>
 
 </resources>
 
