@@ -17,6 +17,8 @@
         android:layout_centerHorizontal="true"/>
 
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -28,12 +30,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="Username :-"
+            android:text="Username "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
         <EditText
+
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
@@ -50,6 +54,8 @@
 
     </LinearLayout>
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -61,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="password :-"
+            android:text="password "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -78,10 +84,13 @@
             android:textSize="15sp"
             android:password="true"
             android:id="@+id/ep"
-            android:drawableLeft="@mipmap/password_icon"/>
+            android:drawableLeft="@mipmap/password_icon"
+            android:inputType="textPassword"/>
 
     </LinearLayout>
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -93,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="confirm password :-"
+            android:text="confirm password "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp"
@@ -111,10 +120,13 @@
             android:textSize="15sp"
             android:password="true"
             android:id="@+id/ecp"
-            android:drawableLeft="@mipmap/password_icon"/>
+            android:drawableLeft="@mipmap/password_icon"
+            android:inputType="textPassword"/>
 
     </LinearLayout>
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -126,7 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="E-mail :-"
+            android:text="E-mail "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -143,10 +155,13 @@
             android:textSize="15sp"
             android:id="@+id/ee"
             android:drawableLeft="@mipmap/email_icon"
+            android:inputType="text"
             />
 
     </LinearLayout>
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -159,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="phone :-"
+            android:text="phone "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -176,12 +191,15 @@
             android:textSize="15sp"
             android:id="@+id/eph"
             android:drawableLeft="@mipmap/phone_icon"
+            android:inputType="phone"
 
             />
 
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -193,7 +211,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="role :-"
+            android:text="role "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp"

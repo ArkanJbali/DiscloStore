@@ -13,12 +13,15 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import java.util.regex.Pattern;
+
 public class registration extends AppCompatActivity {
     int role=0;
     EditText username,password,confpassword,email,phone;
     Button reg;
     DBAdapter db;
     RadioButton customerBTN,businessBTN;
+    String str=  "^[(0)]{1}[0-9\\s.\\/-]{9}$";
     String emailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,7 @@ public class registration extends AppCompatActivity {
         confpassword=(EditText)findViewById(R.id.ecp);
         email=(EditText)findViewById(R.id.ee);
         phone=(EditText)findViewById(R.id.eph);
-        final String emailval = email.getText().toString().trim();
+
         final Drawable customErrorDrawable = getResources().getDrawable(R.drawable.err);
         customErrorDrawable.setBounds(0, 0, customErrorDrawable.getIntrinsicWidth(), customErrorDrawable.getIntrinsicHeight());
 
@@ -40,48 +43,48 @@ public class registration extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v) {
-                if(username.getText().toString().equals("")){
+                String emailval = email.getText().toString().trim();
+                Boolean b =emailval.matches(emailPattern);
+                if(username.getText().toString().length()<=3){
                     username.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                    username.setError("please enter data",customErrorDrawable);
+                    username.setError("user name too short",customErrorDrawable);
                 }
                 else {
                     username.setBackground(getResources().getDrawable(R.drawable.et_bg));
                     username.setError(null);
                 }
-                if(password.getText().toString().equals("")){
+                if(password.getText().toString().length()<=6){
                     password.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                    password.setError("please enter data",customErrorDrawable);
+                    password.setError("password most be 6 character or more",customErrorDrawable);
                 }
                 else {
                     password.setBackground(getResources().getDrawable(R.drawable.et_bg));
                     password.setError(null);
                 }
-                if(confpassword.getText().toString().equals("")){
+                if(confpassword.getText().toString().length()<6){
                     confpassword.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                    confpassword.setError("please enter data",customErrorDrawable);
+                    confpassword.setError("password most be 6 character or more",customErrorDrawable);
                 }
                 else {
                     confpassword.setBackground(getResources().getDrawable(R.drawable.et_bg));
                     confpassword.setError(null);
                 }
-                if(email.getText().toString().equals("")){
-                    Boolean b =emailval.matches(emailPattern);
-                    Toast.makeText(getApplicationContext(), b.toString(), Toast.LENGTH_LONG).show();
+
+                if(b.toString().equals("false")){
+
                     email.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                    email.setError("please enter data",customErrorDrawable);
+                    email.setError("please enter valid email",customErrorDrawable);
                 }
                 else {
                     email.setBackground(getResources().getDrawable(R.drawable.et_bg));
                     email.setError(null);
                 }
-
-                if(phone.getText().toString().equals("")){
-                    phone.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                    phone.setError("please enter data",customErrorDrawable);
-                }
-                else {
+                if (Pattern.compile(str).matcher(phone.getText().toString()).matches()) {
                     phone.setBackground(getResources().getDrawable(R.drawable.et_bg));
                     phone.setError(null);
+                } else {
+                    phone.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
+                    phone.setError("Enter valid number",customErrorDrawable);
                 }
                  customerBTN = findViewById(R.id.radio_customer);
                  businessBTN = findViewById(R.id.radio_business);

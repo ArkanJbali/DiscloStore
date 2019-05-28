@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@drawable/gradient_bg"
     tools:context=".registration">
+
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -18,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
-        android:text="Category :-"
+        android:text="Category "
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="15sp"
@@ -38,6 +44,8 @@
 </ScrollView>
     </LinearLayout>
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -49,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="store name :-"
+            android:text="store name "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -71,6 +79,8 @@
     </LinearLayout>
 
     <Button
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
 android:layout_below="@+id/storename"
         android:id="@+id/pick_image"
         android:layout_width="170dp"
@@ -101,25 +111,54 @@ android:layout_below="@+id/storename"
         android:src="@drawable/ic_account_circle_black"
         android:layout_toRightOf="@+id/pick_image"
         />
-
-    <Button
-        android:layout_below="@+id/storename"
-        android:layout_toRightOf="@+id/profileImageView"
-        android:id="@+id/pick_loc"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:text="PICK Location"
-        android:textColor="#FFF"
-        android:textSize="16dp"
-        android:background="@drawable/btn_bg"
-        android:drawableLeft="@mipmap/photo_icon"
-        />
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/location"
+        android:layout_below="@id/pick_image"
+
+        >
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="location "
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            />
+
+        <Button
+            android:layout_below="@+id/storename"
+            android:layout_toRightOf="@+id/profileImageView"
+            android:id="@+id/pick_loc"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="PICK Location"
+            android:textColor="#FFF"
+            android:layout_gravity="center"
+            android:textSize="16dp"
+            android:background="@drawable/btn_bg"
+            android:drawableLeft="@mipmap/location_icon"
+            />
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/about"
-        android:layout_below="@id/pick_image"
+        android:layout_below="@id/location"
 
         >
 
@@ -128,7 +167,7 @@ android:layout_below="@+id/storename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="about :-"
+            android:text="about "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp"
@@ -150,6 +189,8 @@ android:layout_below="@+id/storename"
 
     </LinearLayout>
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -161,7 +202,7 @@ android:layout_below="@+id/storename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="busniss phone :-"
+            android:text="busniss phone "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -182,6 +223,8 @@ android:layout_below="@+id/storename"
 
     </LinearLayout>
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -193,7 +236,7 @@ android:layout_below="@+id/storename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="fax :-"
+            android:text="fax "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -215,6 +258,8 @@ android:layout_below="@+id/storename"
 
     </LinearLayout>
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -226,7 +271,7 @@ android:layout_below="@+id/storename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="busniss e-mail :-"
+            android:text="busniss e-mail "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -248,6 +293,8 @@ android:layout_below="@+id/storename"
 
     </LinearLayout>
     <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -258,7 +305,7 @@ android:layout_below="@+id/storename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="week-days :-"
+            android:text="week-days "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -341,7 +388,7 @@ android:layout_below="@+id/storename"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:hint="  Pick time"
+                android:text="Pick time"
                 android:gravity="center"
                 android:textSize="15dp"
                 android:drawableLeft="@mipmap/time"
@@ -357,7 +404,7 @@ android:layout_below="@+id/storename"
                 android:textSize="15sp" />
             <TextView
                 android:id="@+id/etChooseTime1"
-                android:layout_width="150dp"
+                android:layout_width="135dp"
                 android:height="30dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/white"
@@ -365,18 +412,19 @@ android:layout_below="@+id/storename"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:hint=" Pick time"
+                android:text="Pick time"
                 android:textSize="15dp"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:drawableLeft="@mipmap/time"
-                android:textColorHint="@color/white"/>
+                android:textColorHint="@color/white"
+                />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="website :-"
+            android:text="website "
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -415,6 +463,5 @@ android:layout_below="@+id/storename"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         />
-
-
 </RelativeLayout>
+    </ScrollView>

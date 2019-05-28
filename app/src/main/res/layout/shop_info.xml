@@ -318,12 +318,15 @@
                     android:layout_toRightOf="@+id/websiteImg"
                     android:layout_toEndOf="@+id/websiteImg"/>
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/gotourl"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:text="our website"/>
+                    android:text="our website"
+                    android:textColor="@color/white"
+                    android:background="@drawable/btn_bg"
+                    android:layout_below="@id/websiteImg"/>
 
 
 
