@@ -425,7 +425,7 @@ public void onNothingSelected(AdapterView<?> arg0) {
        ByteArrayOutputStream baos = new ByteArrayOutputStream();
        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
        byte[] data = baos.toByteArray();
-String webURL = "hhtp:\\"+ew.getText().toString();
+String webURL = "http:\\"+ew.getText().toString();
        Toast.makeText(this, "Image saved to DB successfully", Toast.LENGTH_SHORT).show();
 
         db.insertOwnership(cat,ea.getText().toString(),data,day,ef.getText().toString(),ebp.getText().toString(),
@@ -460,6 +460,5 @@ String webURL = "hhtp:\\"+ew.getText().toString();
         Toast.makeText(this, day, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, time, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, web, Toast.LENGTH_SHORT).show();
-
     }
 }
