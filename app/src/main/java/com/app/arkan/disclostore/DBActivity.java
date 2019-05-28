@@ -16,8 +16,6 @@ public class DBActivity extends Activity {
         setContentView(R.layout.m_act);
 
          db = new DBAdapter(this);
-
-
     }
     public void upd(View v){
         db.open();

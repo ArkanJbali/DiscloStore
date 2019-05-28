@@ -28,7 +28,7 @@ public class StoreInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_info);
-        header = findViewById(R.id.header);
+//        header = findViewById(R.id.header);
         about = findViewById(R.id.about);
         openday = findViewById(R.id.opens);
         contact = findViewById(R.id.contacts_i);
@@ -68,11 +68,11 @@ public class StoreInfo extends AppCompatActivity {
             }
         });
 
-//        /* Initialise list view, hero image, and sticky view */
+       /* Initialise list view, hero image, and sticky view */
 //        listView = (ListView) findViewById(R.id.listView);
-//        heroImageView = findViewById(R.id.heroImageView);
-//        stickyView = (TextView) findViewById(R.id.stickyView);
-//
+//     heroImageView = findViewById(R.id.heroImageView);
+//       stickyView = (TextView) findViewById(R.id.stickyView);
+
 //        /* Inflate list header layout */
 //        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //        View listHeader = inflater.inflate(R.layout.list_header, null);

@@ -54,6 +54,7 @@ public class login extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v) {
+
                 if(un.getText().toString().equals("")){
                     un.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
                     un.setError("please enter data",customErrorDrawable);
@@ -92,6 +93,7 @@ public class login extends AppCompatActivity {
 
     public boolean CheckUserLogin(){
         db.open();
+
         EditText email = findViewById(R.id.un);
         EditText pass = findViewById(R.id.pw);
         String mail=email.getText().toString();

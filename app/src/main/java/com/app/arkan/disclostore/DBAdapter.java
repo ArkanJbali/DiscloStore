@@ -320,7 +320,7 @@ public class DBAdapter {
 
     public long getShopRateSum(String storename){
         long sumRate = 0;
-        long count = 0;
+        long count = 1;
         db = DBHelper.getReadableDatabase();
         Cursor crs = db.rawQuery("SELECT  * FROM " + DATABASE_STORE_TABLE + " where " + KEY_SOTRE_NAME + " = '" + storename +"'" , null);
         crs.moveToFirst();
