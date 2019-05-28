@@ -35,6 +35,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.os.Bundle;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 
 public class busniss_reg extends Activity implements OnItemSelectedListener ,View.OnClickListener {
@@ -92,6 +95,8 @@ public void onCreate(Bundle savedInstanceState) {
          th=(CheckBox)findViewById(R.id.chkth);
          fr=(CheckBox)findViewById(R.id.chkfr);
          sa=(CheckBox)findViewById(R.id.chksa);
+
+
         add.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
