@@ -3,13 +3,9 @@ package com.app.arkan.disclostore;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationManager;
-import android.location.LocationProvider;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,8 +17,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.util.List;
 
 public class STORE_LOCATION extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
@@ -91,7 +85,7 @@ Toast.makeText(getApplicationContext(),"inside getCurrent",Toast.LENGTH_LONG).sh
             LatLng newone = new LatLng(point.latitude,   point.longitude );
             mMap.addMarker(new MarkerOptions().position(newone).title("Your Store"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(newone));
-            sl=point.latitude+""+point.longitude;
+            sl=point.latitude+","+point.longitude;
 
         } });
         ok.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +93,7 @@ Toast.makeText(getApplicationContext(),"inside getCurrent",Toast.LENGTH_LONG).sh
             public void onClick(View v) {
                 if (!sl.equals("")) {
                     Intent i = new Intent(STORE_LOCATION.this, busniss_reg.class);
-                    i.putExtra("sl", sl);
+                    i.putExtra("location", sl);
                     startActivity(i);
                 }else{
                     Toast.makeText(getApplicationContext(),"Please pick an location",Toast.LENGTH_LONG).show();

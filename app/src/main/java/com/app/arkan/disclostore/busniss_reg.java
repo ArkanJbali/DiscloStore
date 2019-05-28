@@ -93,8 +93,8 @@ public void onCreate(Bundle savedInstanceState) {
         customErrorDrawable.setBounds(0, 0, customErrorDrawable.getIntrinsicWidth(), customErrorDrawable.getIntrinsicHeight());
 
 
-        Intent i =getIntent();
-        sl=getIntent().getStringExtra("sl");
+
+        sl=getIntent().getStringExtra("location");
 
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -151,12 +151,7 @@ public void onCreate(Bundle savedInstanceState) {
                      Toast.makeText(getApplicationContext(),"check open hour",Toast.LENGTH_SHORT).show();
                  }
 
-                 /*
-                 storeData();
-                 Intent intent = new Intent(busniss_reg.this, login.class);
-                 startActivity(intent);
-                Toast.makeText(busniss_reg.this, sl, Toast.LENGTH_SHORT).show();
-                */
+
              }
 
          });
@@ -166,8 +161,10 @@ public void onCreate(Bundle savedInstanceState) {
             public void onClick(View v) {
                 Intent intent = new Intent(busniss_reg.this, STORE_LOCATION.class);
                 startActivity(intent);
+
             }
         });
+                Toast.makeText(getApplicationContext(),sl,Toast.LENGTH_LONG).show();
         chooseTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

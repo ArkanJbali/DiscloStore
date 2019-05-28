@@ -28,7 +28,7 @@ public class StoreInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_info);
-        header = findViewById(R.id.header);
+        header = findViewById(R.id.title);
         about = findViewById(R.id.about);
         openday = findViewById(R.id.opens);
         contact = findViewById(R.id.contacts_i);
