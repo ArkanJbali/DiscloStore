@@ -192,6 +192,7 @@
                 android:background="@drawable/bg_store_infoo"
                 >
 
+
                 <ImageView
                     android:layout_marginLeft="5dp"
                     android:contentDescription="@string/img"
@@ -264,21 +265,7 @@
                     android:background="@drawable/btn_bg"
                    />
 
-                <TextView
-                    android:id="@+id/location_i"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/location"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_toEndOf="@+id/locationImg"
-                    android:layout_toRightOf="@+id/locationImg"
-                    android:text="Phone: +972-0524033910"
-                    android:textColor="@android:color/white"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    app:fontFamily="casual" />
+
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
