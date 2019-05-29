@@ -53,7 +53,7 @@ public class registration extends AppCompatActivity {
                     username.setBackground(getResources().getDrawable(R.drawable.et_bg));
                     username.setError(null);
                 }
-                if(password.getText().toString().length()<=6){
+                if(password.getText().toString().length()<6){
                     password.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
                     password.setError("password most be 6 character or more",customErrorDrawable);
                 }
@@ -92,24 +92,39 @@ public class registration extends AppCompatActivity {
                     role=1;
 
                 }else if(businessBTN.isChecked()){
-                    role=2;
-                }
-                if(!username.getText().toString().equals("") && !password.getText().toString().equals("") &&
-                        !confpassword.getText().toString().equals("") && !email.getText().toString().equals("") &&
-                        !phone.getText().toString().equals("")){
-                    if(!CheckUserRegister()) {
-                        userRegistration();
-                        Toast.makeText(getApplicationContext(),"User Added Successfully",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(registration.this, login.class);
-                        startActivity(intent);
-                    }else{
-                        Toast.makeText(getApplicationContext(),"Email already used",Toast.LENGTH_SHORT).show();
+                    if(!username.getText().toString().equals("") && !password.getText().toString().equals("") &&
+                            !confpassword.getText().toString().equals("") && !email.getText().toString().equals("") &&
+                            !phone.getText().toString().equals("")) {
+
+                        if(!confpassword.getText().toString().equals(password.getText().toString())){
+                            Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_LONG).show();
+                        }
+                        else if(!CheckUserRegister() || !confpassword.getText().toString().equals(password.getText().toString())) {
+                            userRegistration();
+                            Intent intent = new Intent(registration.this, busniss_reg.class);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Email already used",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
-                if (role==2){
-                    Intent intent=new Intent(registration.this,busniss_reg.class);
-                    startActivity(intent);
+               else if((customerBTN.isChecked())){
+                   if(!username.getText().toString().equals("") && !password.getText().toString().equals("") &&
+                            !confpassword.getText().toString().equals("") && !email.getText().toString().equals("") &&
+                            !phone.getText().toString().equals("")){
+                        if(!CheckUserRegister()) {
+                            userRegistration();
+                            Toast.makeText(getApplicationContext(),"User Added Successfully",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(registration.this, login.class);
+                            startActivity(intent);
+                        }else if(!confpassword.getText().toString().equals(password.getText().toString())){
+                            Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Email already used",Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
+
             }
         });
 
