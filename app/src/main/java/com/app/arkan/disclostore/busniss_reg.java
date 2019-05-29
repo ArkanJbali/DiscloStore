@@ -261,7 +261,7 @@ public void onCreate(Bundle savedInstanceState) {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
         // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
 
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
