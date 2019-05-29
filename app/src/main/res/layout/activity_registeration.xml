@@ -228,7 +228,7 @@
                 android:id="@+id/radio_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="customer"
+                android:text="Customer"
                 android:textColor="@color/white"
                 />
 
@@ -236,7 +236,7 @@
                 android:id="@+id/radio_business"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="business"
+                android:text="Ownership"
                 android:textColor="@color/white"
                 />
         </RadioGroup>
