@@ -150,7 +150,9 @@ public void onCreate(Bundle savedInstanceState) {
                  if(chooseTime.getText().toString().equals("Pick time")){
                      Toast.makeText(getApplicationContext(),"check open hour",Toast.LENGTH_SHORT).show();
                  }
-
+//check();
+                  storeData();
+                startActivity(new Intent(busniss_reg.this,login.class));
 
              }
 
@@ -164,7 +166,7 @@ public void onCreate(Bundle savedInstanceState) {
 
             }
         });
-                Toast.makeText(getApplicationContext(),sl,Toast.LENGTH_LONG).show();
+
         chooseTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -423,10 +425,11 @@ public void onNothingSelected(AdapterView<?> arg0) {
        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
        byte[] data = baos.toByteArray();
 String webURL = "http:\\"+ew.getText().toString();
+
        Toast.makeText(this, "Image saved to DB successfully", Toast.LENGTH_SHORT).show();
 
-        db.insertOwnership(cat,ea.getText().toString(),data,day,ef.getText().toString(),ebp.getText().toString(),
-                ebe.getText().toString(), webURL,"location not ready");
+        db.insertOwnerships(cat,ea.getText().toString(),data,day,ef.getText().toString(),ebp.getText().toString(),
+                ebe.getText().toString(), webURL,sl,esn.getText().toString(),0,0);
 
         db.insertCategory(cat);
 
@@ -434,6 +437,19 @@ String webURL = "http:\\"+ew.getText().toString();
 
        Toast.makeText(this, "Data saved to DB successfully", Toast.LENGTH_SHORT).show();
         db.close();
+   }
+   public void check(){
+       profileImageView.setDrawingCacheEnabled(true);
+       profileImageView.buildDrawingCache();
+       Bitmap bitmap = profileImageView.getDrawingCache();
+       ByteArrayOutputStream baos = new ByteArrayOutputStream();
+       bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+       byte[] data = baos.toByteArray();
+       ImageView testImage = findViewById(R.id.test);
+       testImage.setImageBitmap(bitmap);
+db.open();
+       testImage.setImageBitmap(db.get());
+       db.close();
    }
     public void dis(){
         if(su.isChecked()){ day+="Su ,";}

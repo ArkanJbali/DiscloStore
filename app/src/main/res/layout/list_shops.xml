@@ -18,51 +18,7 @@
         android:background="@drawable/btn_bg"
         android:paddingTop="0dip"
         >
-        <TableRow android:onClick="rowClick">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                >
-                <ImageView
-                    android:layout_alignParentLeft="true"
-                    android:layout_height="50dp"
-                    android:layout_width="50dp"
-                    android:layout_marginLeft="15dp"
-                    android:id="@+id/image3"
-                    android:background="@drawable/h_m"
-                    />
-                <TextView
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="280dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="H M"
-                    android:textSize="25sp"
-                    />
-                <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rating"
-                    android:onClick="openRatingDialog"
-                    android:id="@+id/rate3"/>
-                <TextView
-                    android:id="@+id/rating"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="13dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rate3"
-                    android:text="3/4"
-                    android:textSize="15sp"/>
-            </RelativeLayout>
 
-        </TableRow>
     </TableLayout>
     </ScrollView>
 </RelativeLayout>

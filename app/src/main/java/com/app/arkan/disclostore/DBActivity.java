@@ -142,7 +142,7 @@ public class DBActivity extends Activity {
     }
     public void getCount(View v){
         db.open();
-       long s= db.getShopsCount("s");
+       long s= db.getShopsCount(0);
         Toast.makeText(getApplicationContext(),"count= "+s,Toast.LENGTH_LONG).show();
         db.close();
     }
