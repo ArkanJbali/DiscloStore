@@ -32,7 +32,9 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         db = new DBAdapter(this);
-
+//        db.open();
+//db.updateTable();
+//db.close();
         rellay1 =  findViewById(R.id.rellay1);
         rellay2 =  findViewById(R.id.rellay2);
         un = findViewById(R.id.un);

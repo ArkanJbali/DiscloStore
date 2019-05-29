@@ -254,31 +254,31 @@
                     android:background="@drawable/location_c"
                     android:contentDescription="@string/img" />
 
-                <TextView
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
                     android:id="@+id/location"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Location"
-                    android:textColor="@android:color/white"
-                    app:fontFamily="casual"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_toRightOf="@+id/locationImg"
-                    android:layout_toEndOf="@+id/locationImg"/>
+                    android:layout_centerInParent="true"
+                    android:text="Go to our location"
+                    android:textColor="@color/white"
+                    android:background="@drawable/btn_bg"
+                   />
+
                 <TextView
                     android:id="@+id/location_i"
-                    android:layout_below="@+id/location"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/location"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/locationImg"
+                    android:layout_toRightOf="@+id/locationImg"
                     android:text="Phone: +972-0524033910"
                     android:textColor="@android:color/white"
-                    app:fontFamily="casual"
                     android:textSize="10sp"
                     android:textStyle="bold"
-                    android:layout_toRightOf="@+id/locationImg"
-                    android:layout_toEndOf="@+id/locationImg"/>
+                    app:fontFamily="casual" />
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
@@ -313,20 +313,20 @@
                     android:text="Website"
                     android:textColor="@android:color/white"
                     app:fontFamily="casual"
+                    android:id="@+id/webtxt"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/websiteImg"
                     android:layout_toEndOf="@+id/websiteImg"/>
                 <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
                     android:id="@+id/gotourl"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="our website"
+                    android:layout_centerInParent="true"
+                    android:text="Go to our website"
                     android:textColor="@color/white"
                     android:background="@drawable/btn_bg"
-                    android:layout_below="@id/websiteImg"/>
+                    android:layout_below="@id/webtxt"/>
 
 
 

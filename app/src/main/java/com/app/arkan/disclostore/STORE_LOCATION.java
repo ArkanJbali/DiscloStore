@@ -22,7 +22,7 @@ public class STORE_LOCATION extends FragmentActivity implements OnMapReadyCallba
     private GoogleMap mMap;
     String sl = "";
     LatLng myPosition;
-    Button ok, current;
+    Button ok;
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == 0) {
@@ -49,7 +49,7 @@ public class STORE_LOCATION extends FragmentActivity implements OnMapReadyCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store__location);
         ok = (Button) findViewById(R.id.ok);
-        current = (Button) findViewById(R.id.current);
+        //current = (Button) findViewById(R.id.current);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -59,12 +59,7 @@ public class STORE_LOCATION extends FragmentActivity implements OnMapReadyCallba
 
         // mMap.getUiSettings().setMyLocationButtonEnabled(true);
         // Getting LocationManager object from System Service LOCATION_SERVICE
-        current.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCurrentLocation();
-            }
-        });
+
     }
 
     public void getCurrentLocation() {

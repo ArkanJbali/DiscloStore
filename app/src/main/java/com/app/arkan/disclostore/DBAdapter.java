@@ -403,6 +403,16 @@ public class DBAdapter {
         }
         return mCursor;
     }
+    public Cursor getShop(String Storename){
+        Cursor mCursor =
+                db.query(true, DATABASE_OWNERSHIPS_TABLE, new String[] {KEY_IMAGE, KEY_SOTRE_NAME,KEY_ABOUT, KEY_OPEN_DAY,KEY_LOCATION,KEY_PHONE_B,KEY_FAX,KEY_EMAIL_B,KEY_URL,},
+                        KEY_SOTRE_NAME + " = "+"'"+ Storename+"'", null,
+                        null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
     //while
     public Bitmap get() {
         int count = 0;

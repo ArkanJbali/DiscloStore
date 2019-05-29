@@ -8,8 +8,14 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -34,8 +40,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".Get_store_loc"
+            android:label="@string/title_activity_get_store_loc"></activity>
+        <activity
             android:name=".STORE_LOCATION"
-            android:label="@string/title_activity_store__location"></activity>
+            android:label="@string/title_activity_store__location" />
         <activity android:name=".busniss_reg" />
         <activity
             android:name=".registration"
