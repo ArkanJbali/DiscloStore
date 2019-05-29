@@ -16,7 +16,6 @@ import android.widget.Toast;
 import java.util.regex.Pattern;
 
 public class registration extends AppCompatActivity {
-    int flag=0;
     int role=0;
     EditText username,password,confpassword,email,phone;
     Button reg;
@@ -45,122 +44,86 @@ public class registration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String emailval = email.getText().toString().trim();
-                Boolean b = emailval.matches(emailPattern);
-                customerBTN = findViewById(R.id.radio_customer);
-                businessBTN = findViewById(R.id.radio_business);
-                if (customerBTN.isChecked()) {
-
-                    if (username.getText().toString().length() <= 3) {
-                        username.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                        username.setError("user name too short", customErrorDrawable);
-
-                    } else {
-                        username.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                        username.setError(null);
-                    }
-                    if (password.getText().toString().length() <= 6) {
-                        password.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                        password.setError("password most be 6 character or more", customErrorDrawable);
-                    } else {
-                        password.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                        password.setError(null);
-                    }
-                    if (confpassword.getText().toString().length() < 6) {
-                        confpassword.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                        confpassword.setError("password most be 6 character or more", customErrorDrawable);
-
-                    } else {
-                        confpassword.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                        confpassword.setError(null);
-
-                    }
-
-                    if (b.toString().equals("false")) {
-
-                        email.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                        email.setError("please enter valid email", customErrorDrawable);
-
-                    } else {
-                        email.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                        email.setError(null);
-
-                    }
-                    if (Pattern.compile(str).matcher(phone.getText().toString()).matches()) {
-                        phone.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                        phone.setError(null);
-
-                    } else {
-
-                        phone.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                        phone.setError("Enter valid number", customErrorDrawable);
-
-                    }
+                Boolean b =emailval.matches(emailPattern);
+                if(username.getText().toString().length()<=3){
+                    username.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
+                    username.setError("user name too short",customErrorDrawable);
                 }
-                if (businessBTN.isChecked()) {
-                    if (username.getText().toString().length() <= 3) {
-                        username.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                        username.setError("user name too short", customErrorDrawable);
-
-                    } else {
-                        username.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                        username.setError(null);
-                    }
-                    if (password.getText().toString().length() <= 6) {
-                        password.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                        password.setError("password most be 6 character or more", customErrorDrawable);
-                    } else {
-                        password.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                        password.setError(null);
-                    }
-                    if (confpassword.getText().toString().length() < 6) {
-                        confpassword.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                        confpassword.setError("password most be 6 character or more", customErrorDrawable);
-
-                    } else {
-                        confpassword.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                        confpassword.setError(null);
-
-                    }
-
-                    if (b.toString().equals("false")) {
-
-                        email.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                        email.setError("please enter valid email", customErrorDrawable);
-
-                    } else {
-                        email.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                        email.setError(null);
-
-                    }
-                    if (Pattern.compile(str).matcher(phone.getText().toString()).matches()) {
-                        phone.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                        phone.setError(null);
-
-                    } else {
-
-                        phone.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                        phone.setError("Enter valid number", customErrorDrawable);
-
-                    }
-                    Intent intent = new Intent(registration.this, busniss_reg.class);
-                    startActivity(intent);
+                else {
+                    username.setBackground(getResources().getDrawable(R.drawable.et_bg));
+                    username.setError(null);
+                }
+                if(password.getText().toString().length()<6){
+                    password.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
+                    password.setError("password most be 6 character or more",customErrorDrawable);
+                }
+                else {
+                    password.setBackground(getResources().getDrawable(R.drawable.et_bg));
+                    password.setError(null);
+                }
+                if(confpassword.getText().toString().length()<6){
+                    confpassword.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
+                    confpassword.setError("password most be 6 character or more",customErrorDrawable);
+                }
+                else {
+                    confpassword.setBackground(getResources().getDrawable(R.drawable.et_bg));
+                    confpassword.setError(null);
                 }
 
-                    if (!username.getText().toString().equals("") && !password.getText().toString().equals("") &&
+                if(b.toString().equals("false")){
+
+                    email.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
+                    email.setError("please enter valid email",customErrorDrawable);
+                }
+                else {
+                    email.setBackground(getResources().getDrawable(R.drawable.et_bg));
+                    email.setError(null);
+                }
+                if (Pattern.compile(str).matcher(phone.getText().toString()).matches()) {
+                    phone.setBackground(getResources().getDrawable(R.drawable.et_bg));
+                    phone.setError(null);
+                } else {
+                    phone.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
+                    phone.setError("Enter valid number",customErrorDrawable);
+                }
+                 customerBTN = findViewById(R.id.radio_customer);
+                 businessBTN = findViewById(R.id.radio_business);
+                if(customerBTN.isChecked()){
+                    role=1;
+
+                }else if(businessBTN.isChecked()){
+                    if(!username.getText().toString().equals("") && !password.getText().toString().equals("") &&
                             !confpassword.getText().toString().equals("") && !email.getText().toString().equals("") &&
                             !phone.getText().toString().equals("")) {
-                        if (!CheckUserRegister()) {
-                            userRegistration();
-                            Toast.makeText(getApplicationContext(), "User Added Successfully", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Email already used", Toast.LENGTH_SHORT).show();
+
+                        if(!confpassword.getText().toString().equals(password.getText().toString())){
+                            Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_LONG).show();
                         }
-                        if(customerBTN.isChecked()) {
-                            Intent intent = new Intent(registration.this, login.class);
+                        else if(!CheckUserRegister() || !confpassword.getText().toString().equals(password.getText().toString())) {
+                            userRegistration();
+                            Intent intent = new Intent(registration.this, busniss_reg.class);
                             startActivity(intent);
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Email already used",Toast.LENGTH_SHORT).show();
                         }
                     }
-
+                }
+               else if((customerBTN.isChecked())){
+                   if(!username.getText().toString().equals("") && !password.getText().toString().equals("") &&
+                            !confpassword.getText().toString().equals("") && !email.getText().toString().equals("") &&
+                            !phone.getText().toString().equals("")){
+                        if(!CheckUserRegister()) {
+                            userRegistration();
+                            Toast.makeText(getApplicationContext(),"User Added Successfully",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(registration.this, login.class);
+                            startActivity(intent);
+                        }else if(!confpassword.getText().toString().equals(password.getText().toString())){
+                            Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Email already used",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
 
             }
         });
@@ -216,8 +179,6 @@ public class registration extends AppCompatActivity {
         }
 
     }
-
-
 }
 
 
