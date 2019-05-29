@@ -18,6 +18,7 @@ import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -63,8 +64,10 @@ public class busniss_reg extends Activity implements OnItemSelectedListener ,Vie
     DbHelper dbHelper;
     String str=  "^[(0)]{1}[0-9\\s.\\/-]{9}$";
     String emailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
     Bitmap thumbnail;
 int flag=0;
+    String webURL;
     @Override
 public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,8 +96,8 @@ public void onCreate(Bundle savedInstanceState) {
         customErrorDrawable.setBounds(0, 0, customErrorDrawable.getIntrinsicWidth(), customErrorDrawable.getIntrinsicHeight());
 
 
-
-        sl=getIntent().getStringExtra("location");
+        Intent i =getIntent();
+        sl=getIntent().getStringExtra("sl");
 
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +107,7 @@ public void onCreate(Bundle savedInstanceState) {
                  if (Pattern.compile(str).matcher(ebp.getText().toString()).matches()) {
                      ea.setBackground(getResources().getDrawable(R.drawable.et_bg));
                      ea.setError(null);
+                     storemove();
                  } else {
                      ebp.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
                      ebp.setError("Enter valid number",customErrorDrawable);
@@ -115,6 +119,7 @@ public void onCreate(Bundle savedInstanceState) {
                      ea.setError("your details is too short",customErrorDrawable);
                  }
                  else {
+                     storemove();
                     ea.setBackground(getResources().getDrawable(R.drawable.et_bg));
                      ea.setError(null);
                  }
@@ -124,15 +129,16 @@ public void onCreate(Bundle savedInstanceState) {
                      esn.setError("your details is too short",customErrorDrawable);
                  }
                  else {
+                     storemove();
                      esn.setBackground(getResources().getDrawable(R.drawable.et_bg));
                      esn.setError(null);
                  }
                  if(b.toString().equals("false")){
-
                      ebe.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
                      ebe.setError("please enter valid email",customErrorDrawable);
                  }
                  else {
+                     storemove();
                      ebe.setBackground(getResources().getDrawable(R.drawable.et_bg));
                      ebe.setError(null);
                  }
@@ -143,16 +149,35 @@ public void onCreate(Bundle savedInstanceState) {
                  if(flag==1){
                      flag=0;
                     Toast.makeText(getApplicationContext(),"NO DAYES SELECTED",Toast.LENGTH_SHORT).show();
+
+                 }
+                 else {
+                     storemove();
                  }
                 if(chooseTime1.getText().toString().equals("Pick time")){
                     Toast.makeText(getApplicationContext(),"check close hour",Toast.LENGTH_SHORT).show();
                 }
+                else {
+                    storemove();
+                }
                  if(chooseTime.getText().toString().equals("Pick time")){
                      Toast.makeText(getApplicationContext(),"check open hour",Toast.LENGTH_SHORT).show();
                  }
-//check();
-                  storeData();
-                startActivity(new Intent(busniss_reg.this,login.class));
+                 else {
+                     storemove();
+                 }
+                 webURL= "hhtp:\\"+ew.getText().toString();
+                 if( !Patterns.WEB_URL.matcher(webURL).matches()){
+                     ew.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
+                     ew.setError("please enter valid website",customErrorDrawable);
+
+                 }
+                 else {
+                     ew.setBackground(getResources().getDrawable(R.drawable.et_bg));
+                     ew.setError(null);
+                     storemove();
+                 }
+
 
              }
 
@@ -163,10 +188,8 @@ public void onCreate(Bundle savedInstanceState) {
             public void onClick(View v) {
                 Intent intent = new Intent(busniss_reg.this, STORE_LOCATION.class);
                 startActivity(intent);
-
             }
         });
-
         chooseTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -424,12 +447,10 @@ public void onNothingSelected(AdapterView<?> arg0) {
        ByteArrayOutputStream baos = new ByteArrayOutputStream();
        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
        byte[] data = baos.toByteArray();
-String webURL = "http:\\"+ew.getText().toString();
-
        Toast.makeText(this, "Image saved to DB successfully", Toast.LENGTH_SHORT).show();
 
-        db.insertOwnerships(cat,ea.getText().toString(),data,day,ef.getText().toString(),ebp.getText().toString(),
-                ebe.getText().toString(), webURL,sl,esn.getText().toString(),0,0);
+        db.insertOwnership(cat,ea.getText().toString(),data,day,ef.getText().toString(),ebp.getText().toString(),
+                ebe.getText().toString(), webURL,"location not ready");
 
         db.insertCategory(cat);
 
@@ -437,19 +458,6 @@ String webURL = "http:\\"+ew.getText().toString();
 
        Toast.makeText(this, "Data saved to DB successfully", Toast.LENGTH_SHORT).show();
         db.close();
-   }
-   public void check(){
-       profileImageView.setDrawingCacheEnabled(true);
-       profileImageView.buildDrawingCache();
-       Bitmap bitmap = profileImageView.getDrawingCache();
-       ByteArrayOutputStream baos = new ByteArrayOutputStream();
-       bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-       byte[] data = baos.toByteArray();
-       ImageView testImage = findViewById(R.id.test);
-       testImage.setImageBitmap(bitmap);
-db.open();
-       testImage.setImageBitmap(db.get());
-       db.close();
    }
     public void dis(){
         if(su.isChecked()){ day+="Su ,";}
@@ -473,5 +481,12 @@ db.open();
         Toast.makeText(this, day, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, time, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, web, Toast.LENGTH_SHORT).show();
+
+    }
+    void storemove() {
+        storeData();
+        Intent intent = new Intent(busniss_reg.this, login.class);
+        startActivity(intent);
+        Toast.makeText(busniss_reg.this, sl, Toast.LENGTH_SHORT).show();
     }
 }
