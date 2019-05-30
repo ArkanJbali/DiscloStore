@@ -125,7 +125,8 @@ public class catalog extends AppCompatActivity {
             }
             case R.id.restaurant: {
                 Intent intent = new Intent(catalog.this, listShops.class);
-                intent.putExtra("Title", 12);
+                intent.putExtra("Title", "Restaurant");
+                intent.putExtra("categoryid", 12);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_out_left, R.anim.hold);
                 break;
