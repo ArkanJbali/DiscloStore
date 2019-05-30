@@ -140,7 +140,7 @@ public void openForgetPass(){
     final EditText emailAddress = (EditText) mView.findViewById(R.id.email_address);
 
     alertDialogBuilderUserInput
-            .setCancelable(true)
+            .setCancelable(false)
             .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogBox, int id) {
                     if((emailAddress).getText().toString().equals("") ){

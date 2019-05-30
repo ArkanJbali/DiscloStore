@@ -47,6 +47,12 @@ public class listShops extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     public void openRatingDialog(final String sName){
         GlobalUtils.showDialog(this, new DialogCallback() {
             @Override
@@ -77,11 +83,7 @@ public class listShops extends AppCompatActivity {
         startActivity(i);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+
 
 
 

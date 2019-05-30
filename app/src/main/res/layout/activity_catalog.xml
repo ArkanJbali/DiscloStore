@@ -596,17 +596,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:src="@drawable/blacksmith"
+                    android:src="@drawable/restaurant"
                     android:contentDescription="@string/img"
-                    android:id="@+id/blacksmith2Img"
+                    android:id="@+id/restaurant"
                     android:onClick="onClickShops"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
                     app:fontFamily="casual"
-                    android:text="@string/blacksmith"
+                    android:text="Restaurant"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     android:textSize="14sp"

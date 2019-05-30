@@ -1,8 +1,6 @@
 package com.app.arkan.disclostore;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,21 +8,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class StoreInfo extends AppCompatActivity {
     Button gotourl,gotoloc;
@@ -77,6 +67,13 @@ public class StoreInfo extends AppCompatActivity {
                 });
                 alert.show();
 
+            }
+        });
+        ImageView backBTN = findViewById(R.id.backBTN);
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
             }
         });
 

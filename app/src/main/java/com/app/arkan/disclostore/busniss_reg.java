@@ -263,6 +263,7 @@ public void onCreate(Bundle savedInstanceState) {
         categories.add("Jewel");
         categories.add("Mechanic");
         categories.add("Optics");
+        categories.add("Restaurant");
         categories.add("Shoes");
         categories.add("Toys");
 

@@ -302,7 +302,7 @@ public class DBAdapter {
         }
         return mCursor;
     }
-    public boolean updateOwnership(String rowId, int category, String image, String openday, String fax, String bphone,
+    public boolean updateOwnership(String rowId, int category, byte[] image, String openday, String fax, String bphone,
                                    String bemail, String url, String location, String storename, int rating, int counter)
     {
         ContentValues initialValues = new ContentValues();
@@ -318,6 +318,22 @@ public class DBAdapter {
         initialValues.put(KEY_RATING, rating);
         initialValues.put(KEY_RATING_COUNTER, counter);
         return db.update(DATABASE_BUSINESS_TABLE, initialValues, KEY_ROWID + "=" + rowId, null) > 0;
+    }
+    public boolean updateOwnerships(int rowId, int category, byte[] image, String about, String openday, String fax, String bphone,
+                                   String bemail, String url, String location, String storename)
+    {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_CATEGORY, category);
+        initialValues.put(KEY_ABOUT,about);
+        initialValues.put(KEY_EMAIL_B, bemail);
+        initialValues.put(KEY_IMAGE, image);
+        initialValues.put(KEY_PHONE_B, bphone);
+        initialValues.put(KEY_URL, url);
+        initialValues.put(KEY_OPEN_DAY, openday);
+        initialValues.put(KEY_FAX, fax);
+        initialValues.put(KEY_LOCATION, location);
+        initialValues.put(KEY_SOTRE_NAME, storename);
+        return db.update(DATABASE_OWNERSHIPS_TABLE, initialValues, KEY_ROWID2 + "=" + rowId, null) > 0;
     }
     public boolean updateUser(long rowId, String name, String email, String password, String phone, int role)
     {
@@ -370,7 +386,7 @@ public class DBAdapter {
     }
     public Cursor getShop(String Storename){
         Cursor mCursor =
-                db.query(true, DATABASE_OWNERSHIPS_TABLE, new String[] {KEY_IMAGE, KEY_SOTRE_NAME,KEY_ABOUT, KEY_OPEN_DAY,KEY_LOCATION,KEY_PHONE_B,KEY_FAX,KEY_EMAIL_B,KEY_URL,},
+                db.query(true, DATABASE_OWNERSHIPS_TABLE, new String[] {KEY_IMAGE, KEY_SOTRE_NAME,KEY_ABOUT, KEY_OPEN_DAY,KEY_LOCATION,KEY_PHONE_B,KEY_FAX,KEY_EMAIL_B,KEY_URL,KEY_ROWID4,KEY_CATEGORY},
                         KEY_SOTRE_NAME + " = "+"'"+ Storename+"'", null,
                         null, null, null, null);
         if (mCursor != null) {

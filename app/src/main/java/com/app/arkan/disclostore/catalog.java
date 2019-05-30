@@ -30,7 +30,7 @@ public class catalog extends AppCompatActivity {
             case R.id.shoesImg: {
                 Intent intent = new Intent(catalog.this, listShops.class);
                 intent.putExtra("Title", "Shoes");
-                intent.putExtra("categoryid", 12);
+                intent.putExtra("categoryid", 13);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_out_left, R.anim.hold);
                 break;
@@ -62,7 +62,7 @@ public class catalog extends AppCompatActivity {
             case R.id.toysImg: {
                 Intent intent = new Intent(catalog.this, listShops.class);
                 intent.putExtra("Title", "Toys");
-                intent.putExtra("categoryid", 13);
+                intent.putExtra("categoryid", 14);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_out_left, R.anim.hold);
                 break;
@@ -123,9 +123,9 @@ public class catalog extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_out_left, R.anim.hold);
                 break;
             }
-            case R.id.blacksmith2Img: {
+            case R.id.restaurant: {
                 Intent intent = new Intent(catalog.this, listShops.class);
-                intent.putExtra("Title", "Blacksmiths2");
+                intent.putExtra("Title", 12);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_out_left, R.anim.hold);
                 break;
