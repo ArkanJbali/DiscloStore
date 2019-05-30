@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/storename"
+        android:id="@+id/storenameLy"
         android:layout_below="@id/Category"
         >
 
@@ -63,7 +63,7 @@
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/esn"
+            android:id="@+id/storename"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
@@ -81,7 +81,7 @@
     <Button
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-android:layout_below="@+id/storename"
+android:layout_below="@+id/storenameLy"
         android:id="@+id/pick_image"
         android:layout_width="170dp"
         android:layout_height="50dp"
@@ -99,7 +99,7 @@ android:layout_below="@+id/storename"
 
     <ImageView
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/storename"
+        android:layout_below="@+id/storenameLy"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profileImageView"
         android:layout_width="100dp"
@@ -135,7 +135,7 @@ android:layout_below="@+id/storename"
             />
 
         <Button
-            android:layout_below="@+id/storename"
+            android:layout_below="@+id/storenameLy"
             android:layout_toRightOf="@+id/profileImageView"
             android:id="@+id/pick_loc"
             android:layout_width="match_parent"
@@ -159,11 +159,8 @@ android:layout_below="@+id/storename"
         android:orientation="vertical"
         android:id="@+id/about"
         android:layout_below="@id/location"
-
         >
-
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
@@ -183,7 +180,7 @@ android:layout_below="@+id/storename"
             android:paddingRight="15dp"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:id="@+id/ea"
+            android:id="@+id/enterAbout"
             android:drawableLeft="@mipmap/about_icon"
             />
 
@@ -208,7 +205,7 @@ android:layout_below="@+id/storename"
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/ebp"
+            android:id="@+id/enterBphone"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
@@ -252,7 +249,7 @@ android:layout_below="@+id/storename"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:inputType="phone"
-            android:id="@+id/ef"
+            android:id="@+id/enterFax"
             android:drawableLeft="@mipmap/fax_icon"
             />
 
@@ -287,7 +284,7 @@ android:layout_below="@+id/storename"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:inputType="textEmailAddress"
-            android:id="@+id/ebe"
+            android:id="@+id/enterBemail"
             android:drawableLeft="@mipmap/email_icon"
             />
 
@@ -439,7 +436,7 @@ android:layout_below="@+id/storename"
             android:paddingRight="15dp"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:id="@+id/ew"
+            android:id="@+id/enterUrl"
             android:inputType="text"
             android:drawableLeft="@mipmap/url_icon"
             />

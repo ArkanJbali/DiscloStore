@@ -33,6 +33,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -45,14 +46,11 @@ import java.util.regex.Pattern;
 public class busniss_reg extends Activity implements OnItemSelectedListener ,View.OnClickListener {
     private ImageView profileImageView;
     private Button pickImage;
-    EditText ea,ebp,ef,ebe,ew,esn;
-    Button add;
-    Button location;
+    EditText enterAbout,enterBphone,enterFax,enterBemail,enterUrl,storeName;
+    Button add,location;
     TextView chooseTime,chooseTime1 ;
     CheckBox su, mo, tu, we, th ,fr, sa;
-    String data="";
-    String sl="";
-    String day="", about="", bphone="", fax="", bemail="", web="", time="", storename="";
+    String day="",sl="", about="", bphone="", fax="", bemail="", web="", time="", storename="";
     int cat = 0;
     private static final int SELECT_PHOTO = 1;
     private static final int CAPTURE_PHOTO = 2;
@@ -62,28 +60,30 @@ public class busniss_reg extends Activity implements OnItemSelectedListener ,Vie
     private Handler progressBarbHandler = new Handler();
     private boolean hasImageChanged = false;
     DbHelper dbHelper;
-    String str=  "^[(0)]{1}[0-9\\s.\\/-]{9}$";
+    String phonePattern=  "^[(0)]{1}[0-9\\s.\\/-]{9}$";
     String emailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
     Bitmap thumbnail;
-int flag=0;
+    int flag=0,storeVal = 0;
     String webURL;
     @Override
 public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busniss_reg);
         db = new DBAdapter(this);
+        dbHelper = new DbHelper(this);
+
         chooseTime=(TextView)findViewById(R.id.etChooseTime);
         chooseTime1=(TextView)findViewById(R.id.etChooseTime1);
         profileImageView = (ImageView) findViewById(R.id.profileImageView);
         pickImage = (Button) findViewById(R.id.pick_image);
-       location = (Button) findViewById(R.id.pick_loc);
-         ea=(EditText)findViewById(R.id.ea);
-         ebp=(EditText)findViewById(R.id.ebp);
-         ef=(EditText)findViewById(R.id.ef);
-         ebe=(EditText)findViewById(R.id.ebe);
-         ew=(EditText)findViewById(R.id.ew);
-         esn=findViewById(R.id.esn);
+        location = (Button) findViewById(R.id.pick_loc);
+        enterAbout=(EditText)findViewById(R.id.enterAbout);
+        enterBphone=(EditText)findViewById(R.id.enterBphone);
+        enterFax=(EditText)findViewById(R.id.enterFax);
+        enterBemail=(EditText)findViewById(R.id.enterBemail);
+        enterUrl=(EditText)findViewById(R.id.enterUrl);
+         storeName=findViewById(R.id.storename);
          add=(Button)findViewById(R.id.add);
          su=(CheckBox)findViewById(R.id.chksu);
          mo=(CheckBox)findViewById(R.id.chkmo);
@@ -95,52 +95,58 @@ public void onCreate(Bundle savedInstanceState) {
         final Drawable customErrorDrawable = getResources().getDrawable(R.drawable.err);
         customErrorDrawable.setBounds(0, 0, customErrorDrawable.getIntrinsicWidth(), customErrorDrawable.getIntrinsicHeight());
 
-
-        Intent i =getIntent();
-        sl=getIntent().getStringExtra("sl");
+        sl=getIntent().getStringExtra("location");
 
 
         add.setOnClickListener(new View.OnClickListener() {
              @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
              @Override
              public void onClick(View v) {
-                 if (Pattern.compile(str).matcher(ebp.getText().toString()).matches()) {
-                     ea.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                     ea.setError(null);
-                     storemove();
+                 if (Pattern.compile(phonePattern).matcher(enterBphone.getText().toString()).matches()) {
+                     enterBphone.setBackground(getResources().getDrawable(R.drawable.et_bg));
+                     enterBphone.setError(null);
                  } else {
-                     ebp.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                     ebp.setError("Enter valid number",customErrorDrawable);
-                 }
-                 String emailval = ebe.getText().toString().trim();
-                 Boolean b =emailval.matches(emailPattern);
-                 if(ea.getText().toString().length()<6){
-                    ea.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                     ea.setError("your details is too short",customErrorDrawable);
-                 }
-                 else {
-                     storemove();
-                    ea.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                     ea.setError(null);
+                     enterBphone.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
+                     enterBphone.setError("Enter valid number",customErrorDrawable);
+                     storeVal = 1;
+                     Log.d("ErrorVal","inside bPhone");
                  }
 
-                 if(esn.getText().toString().length()<=3){
-                     esn.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                     esn.setError("your details is too short",customErrorDrawable);
+                 if(enterAbout.getText().toString().length()<6){
+                     enterAbout.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
+                     enterAbout.setError("your details is too short",customErrorDrawable);
+                     storeVal = 1;
+                     Log.d("ErrorVal","inside about");
                  }
                  else {
-                     storemove();
-                     esn.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                     esn.setError(null);
+                     enterAbout.setBackground(getResources().getDrawable(R.drawable.et_bg));
+                     enterAbout.setError(null);
+
                  }
-                 if(b.toString().equals("false")){
-                     ebe.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                     ebe.setError("please enter valid email",customErrorDrawable);
+
+                 if(storeName.getText().toString().length()<=3){
+                     storeName.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
+                     storeName.setError("your store name is too short",customErrorDrawable);
+                     storeVal = 1;
+                     Log.d("ErrorVal","inside storeName");
                  }
                  else {
-                     storemove();
-                     ebe.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                     ebe.setError(null);
+                     storeName.setBackground(getResources().getDrawable(R.drawable.et_bg));
+                     storeName.setError(null);
+
+                 }
+                 String emailval = enterBemail.getText().toString().trim();
+                 Boolean matchMail =emailval.matches(emailPattern);
+                 if(matchMail.toString().equals("false")){
+                     enterBemail.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
+                     enterBemail.setError("please enter valid email",customErrorDrawable);
+                     storeVal = 1;
+                     Log.d("ErrorVal","inside bEmail:"+emailval);
+                 }
+                 else {
+                     enterBemail.setBackground(getResources().getDrawable(R.drawable.et_bg));
+                     enterBemail.setError(null);
+
                  }
                  if(!su.isChecked()&&!mo.isChecked()&&!tu.isChecked()&&!tu.isChecked()&&!we.isChecked()
                          &&!th.isChecked()&&!fr.isChecked()&&!sa.isChecked()){
@@ -148,36 +154,41 @@ public void onCreate(Bundle savedInstanceState) {
                  }
                  if(flag==1){
                      flag=0;
+                     storeVal = 1;
+                     Log.d("ErrorVal","inside days");
                     Toast.makeText(getApplicationContext(),"NO DAYES SELECTED",Toast.LENGTH_SHORT).show();
 
                  }
-                 else {
-                     storemove();
-                 }
                 if(chooseTime1.getText().toString().equals("Pick time")){
                     Toast.makeText(getApplicationContext(),"check close hour",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    storemove();
+                    storeVal = 1;
+
+                    Log.d("ErrorVal","inside pickTime2");
                 }
                  if(chooseTime.getText().toString().equals("Pick time")){
                      Toast.makeText(getApplicationContext(),"check open hour",Toast.LENGTH_SHORT).show();
+                     storeVal = 1;
+
+                     Log.d("ErrorVal","inside pickTime1");
                  }
-                 else {
-                     storemove();
-                 }
-                 webURL= "hhtp:\\"+ew.getText().toString();
+
+                 webURL= "http://"+enterUrl.getText().toString();
                  if( !Patterns.WEB_URL.matcher(webURL).matches()){
-                     ew.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
-                     ew.setError("please enter valid website",customErrorDrawable);
-
+                     enterUrl.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
+                     enterUrl.setError("please enter valid website",customErrorDrawable);
+                     storeVal = 1;
+                     Log.d("ErrorVal","inside website");
                  }
                  else {
-                     ew.setBackground(getResources().getDrawable(R.drawable.et_bg));
-                     ew.setError(null);
-                     storemove();
+                     enterUrl.setBackground(getResources().getDrawable(R.drawable.et_bg));
+                     enterUrl.setError(null);
                  }
-
+                if(storeVal == 0){
+                    storeData();
+                }else{
+                    Toast.makeText(busniss_reg.this, "An Error Occurred!, please validate the fields", Toast.LENGTH_SHORT).show();
+                    storeVal=0;
+                }
 
              }
 
@@ -229,7 +240,7 @@ public void onCreate(Bundle savedInstanceState) {
             profileImageView.setEnabled(true);
         }
 
-        dbHelper = new DbHelper(this);
+
 
 
 
@@ -242,39 +253,31 @@ public void onCreate(Bundle savedInstanceState) {
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
         categories.add("Barber");
-            categories.add("Blacksmith");
-            categories.add("Book");
-            categories.add("Carpenter");
+        categories.add("Blacksmith");
+        categories.add("Book");
+        categories.add("Carpenter");
         categories.add("Clothes");
         categories.add("Electrical");
-            categories.add("Electronics");
-            categories.add("Flowers");
-            categories.add("Jewel");
+        categories.add("Electronics");
+        categories.add("Flowers");
+        categories.add("Jewel");
         categories.add("Mechanic");
         categories.add("Optics");
-            categories.add("Shoes");
-            categories.add("Toys");
-
-
+        categories.add("Shoes");
+        categories.add("Toys");
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
         }
-        //now the image picker
-
 @Override
 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
         int item =(int)(id+1);
         cat=item;
-        // Showing selected spinner item
-        //Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
         }
 public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
@@ -283,7 +286,6 @@ public void onNothingSelected(AdapterView<?> arg0) {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.pick_image:
                 final Dialog dialog = new Dialog(this);
                 dialog.setContentView(R.layout.dialog_act);
@@ -447,46 +449,26 @@ public void onNothingSelected(AdapterView<?> arg0) {
        ByteArrayOutputStream baos = new ByteArrayOutputStream();
        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
        byte[] data = baos.toByteArray();
-       Toast.makeText(this, "Image saved to DB successfully", Toast.LENGTH_SHORT).show();
 
-        db.insertOwnership(cat,ea.getText().toString(),data,day,ef.getText().toString(),ebp.getText().toString(),
-                ebe.getText().toString(), webURL,"location not ready");
+       storename = storeName.getText().toString();
+       String pickTime1 = chooseTime.getText().toString();
+       String pickTime2 = chooseTime1.getText().toString();
+       day +="\n" + pickTime1 +" - " +pickTime2;
+        long id = db.insertOwnerships(cat,enterAbout.getText().toString(),data,day,enterFax.getText().toString(),enterBphone.getText().toString(),
+                enterBemail.getText().toString(), webURL,sl,storename,1,1);
 
         db.insertCategory(cat);
 
-        db.insertStoreinfo(cat,esn.getText().toString(),0,0);
-
-       Toast.makeText(this, "Data saved to DB successfully", Toast.LENGTH_SHORT).show();
+        db.insertStoreinfo(cat,storename,1,1);
+        if(id >= 0) {
+            Toast.makeText(this, "Data saved to DB successfully", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(busniss_reg.this, login.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, "An Error Occurred!, please check the fields", Toast.LENGTH_SHORT).show();
+        }
         db.close();
-   }
-    public void dis(){
-        if(su.isChecked()){ day+="Su ,";}
-        if(mo.isChecked()){ day+="Mo ,";}
-        if(tu.isChecked()){ day+="Tu ,";}
-        if(we.isChecked()){ day+="We ,";}
-        if(th.isChecked()){ day+="Th ,";}
-        if(fr.isChecked()){ day+="Fr ,";}
-        if(sa.isChecked()){ day+="Sa ,";}
-    time=chooseTime.getText().toString()+"-"+chooseTime1.getText().toString();
-     about=ea.getText().toString();
-     bphone=ebp.getText().toString();
-     fax=ef.getText().toString();
-     bemail=ebe.getText().toString();
-     web=ew.getText().toString();
-        Toast.makeText(this, cat, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, about, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, bphone, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, fax, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, bemail, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, day, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, time, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, web, Toast.LENGTH_SHORT).show();
 
-    }
-    void storemove() {
-        storeData();
-        Intent intent = new Intent(busniss_reg.this, login.class);
-        startActivity(intent);
-        Toast.makeText(busniss_reg.this, sl, Toast.LENGTH_SHORT).show();
-    }
+   }
+
 }

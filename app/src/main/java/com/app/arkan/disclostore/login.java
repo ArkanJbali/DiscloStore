@@ -1,12 +1,16 @@
 package com.app.arkan.disclostore;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,11 +56,17 @@ public class login extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_out_left, R.anim.fade_in);
             }
         });
+        Button forgetBTN = findViewById(R.id.forgetPass);
+        forgetBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openForgetPass();
+            }
+        });
         loginBTN.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v) {
-
                 if(un.getText().toString().equals("")){
                     un.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
                     un.setError("please enter data",customErrorDrawable);
@@ -81,8 +91,14 @@ public class login extends AppCompatActivity {
                            overridePendingTransition(R.anim.slide_out_left, R.anim.fade_in);
                        }
                        if(ROLE_FLAG == 2) {
+                           String storename = " ";
+                           Intent i = new Intent(login.this, Ownership.class);
+                           db.open();
+                           storename = db.getShopName(un.getText().toString());
+                           db.close();
+                           i.putExtra("StoreName",storename);
                            Toast.makeText(getApplicationContext(),"Go to ownership activity", Toast.LENGTH_LONG).show();
-                           startActivity(new Intent(login.this, Ownership.class));
+                           startActivity(i);
                        }
                    }else{
                        Toast.makeText(getApplicationContext(),"Invalid UserName or Password !!!", Toast.LENGTH_LONG).show();
@@ -114,4 +130,54 @@ public class login extends AppCompatActivity {
         db.close();
         return false;
     }
+
+public void openForgetPass(){
+    LayoutInflater layoutInflaterAndroid = LayoutInflater.from(this);
+    View mView = layoutInflaterAndroid.inflate(R.layout.forget_password_layout, null);
+    AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(this,R.style.AppCompatAlertDialogStyle);
+    alertDialogBuilderUserInput.setView(mView);
+
+    final EditText emailAddress = (EditText) mView.findViewById(R.id.email_address);
+
+    alertDialogBuilderUserInput
+            .setCancelable(true)
+            .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialogBox, int id) {
+                    if((emailAddress).getText().toString().equals("") ){
+                        Toast.makeText(getApplicationContext(),"Error, Please fill all the fields !!",Toast.LENGTH_LONG).show();
+                    }else {
+                        String email = emailAddress.getText().toString();
+                        int existUser = 0;
+                        db.open();
+
+                        Cursor c = db.CheckUserRegister(email);
+                        if (c.moveToFirst())
+                        {
+                            do {
+                                if(c.getString(0).equals(email)){
+                                    existUser=1;
+                                }
+                            } while (c.moveToNext());
+                        }
+                        db.close();
+                        if(existUser == 1){
+                            String pw = db.getEmail(email);
+                            Toast.makeText(getApplicationContext(), "Your Password is: "+pw, Toast.LENGTH_LONG).show();
+                        }else {
+                            Toast.makeText(getApplicationContext(), "User not exist", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+            })
+
+            .setNegativeButton("Cancel",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogBox, int id) {
+                            dialogBox.cancel();
+                        }
+                    });
+
+    AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
+    alertDialogAndroid.show();
+}
 }

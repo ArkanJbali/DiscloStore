@@ -330,12 +330,11 @@ public class DBAdapter {
         return db.update(DATABASE_USER_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
 
-    public boolean updateRating(long rowId, int rating, int counter)
-    {
+    public boolean updateRating(String storename,int rating, int counter) {
         ContentValues args = new ContentValues();
         args.put(KEY_RATING, rating);
         args.put(KEY_RATING_COUNTER, counter);
-        return db.update(DATABASE_STORE_TABLE, args, KEY_ROWID4 + "=" + rowId, null) > 0;
+        return db.update(DATABASE_OWNERSHIPS_TABLE, args, KEY_SOTRE_NAME + " = '"+ storename+"'", null) > 0;
     }
 
     public long getShopsCount(int categoryid){
@@ -346,52 +345,18 @@ public class DBAdapter {
         cursor.close();
         return count;
     }
-//    public long getShopRateCount(String storename){
-//        long count = 0;
-//        db = DBHelper.getReadableDatabase();
-//        Cursor crs = db.rawQuery("SELECT  * FROM " + DATABASE_STORE_TABLE + " where " + KEY_SOTRE_NAME + " = " + storename , null);
-//        crs.moveToFirst();
-//        while (crs.isAfterLast() == false){
-//            count+= Integer.valueOf(crs.getString(4));
-//            crs.moveToNext();
-//        }
-//        return count;
-//    }
 
-    public long getShopRateSum(String storename){
-        long sumRate = 0;
-        long count = 1;
+    public int getShopRating(String shopname){
+        int rate = 0;
         db = DBHelper.getReadableDatabase();
-        Cursor crs = db.rawQuery("SELECT  * FROM " + DATABASE_STORE_TABLE + " where " + KEY_SOTRE_NAME + " = '" + storename +"'" , null);
+        Cursor crs = db.rawQuery("SELECT rating FROM " + DATABASE_OWNERSHIPS_TABLE + " where " + KEY_SOTRE_NAME + " = '" + shopname +"'", null);
         crs.moveToFirst();
         while (crs.isAfterLast() == false){
-            sumRate+= Integer.valueOf(crs.getString(3));
-            count=count+ Integer.valueOf(crs.getString(4));
+          rate = Integer.valueOf(crs.getString(0));
+            //check devide by zero
             crs.moveToNext();
         }
-        return sumRate/count;
-    }
-    public long getShopId(String storename){
-        long id = 0;
-        db = DBHelper.getReadableDatabase();
-        Cursor crs = db.rawQuery("SELECT  * FROM " + DATABASE_STORE_TABLE + " where " + KEY_SOTRE_NAME + " = '" + storename +"'" , null);
-        crs.moveToFirst();
-        while (crs.isAfterLast() == false){
-            id = Integer.valueOf(crs.getString(0));
-            crs.moveToNext();
-        }
-        return id;
-    }
-    public long getShopCount(String shopname){
-        long count = 0;
-        db = DBHelper.getReadableDatabase();
-        Cursor crs = db.rawQuery("SELECT  * FROM " + DATABASE_OWNERSHIPS_TABLE + " where " + KEY_CATEGORY + " = '" + shopname +"'", null);
-        crs.moveToFirst();
-        while (crs.isAfterLast() == false){
-            count = Integer.valueOf(crs.getString(4));
-            crs.moveToNext();
-        }
-        return count;
+        return rate;
     }
     public Cursor getListShopRow(int categoryid){
         Cursor mCursor =
@@ -414,28 +379,22 @@ public class DBAdapter {
         return mCursor;
     }
     //while
-    public Bitmap get() {
-        int count = 0;
+    public Bitmap get(String storename) {
         db = DBHelper.getReadableDatabase();
-        Cursor c = db.rawQuery("select image from ownership", null);
+        Cursor c = db.rawQuery("select image from ownerships where " + KEY_SOTRE_NAME + " = '" + storename +"'", null);
         c.moveToFirst();
         while (c.isAfterLast() == false)
         {
-
             byte[] image = c.getBlob(0);
             Bitmap bmp= BitmapFactory.decodeByteArray(image, 0 , image.length);
-            if(count == 2) {
-                return bmp;
-            }
-            count++;
             c.moveToNext();
-
+            return bmp;
         }
         return null;
     }
-    public String getShopName() {
+    public String getShopName(String email) {
         db = DBHelper.getReadableDatabase();
-        Cursor c = db.rawQuery("select storename from storeinfo", null);
+        Cursor c = db.rawQuery("select storename from ownerships where " + KEY_EMAIL_B + " = '" + email +"'" , null);
         if(c.moveToNext())
         {
            String shopname = c.getString(0);
@@ -444,7 +403,28 @@ public class DBAdapter {
         }
         return null;
     }
+    public int getShopCounter(String shopname) {
+        db = DBHelper.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT  ratecounter FROM " + DATABASE_OWNERSHIPS_TABLE + " where " + KEY_SOTRE_NAME + " = '" + shopname +"'", null);
+        if(c.moveToNext())
+        {
+            int shopnames = Integer.valueOf(c.getString(0));
+            return shopnames;
 
+        }
+        return 0;
+    }
+    public String getEmail(String email) {
+        db = DBHelper.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT  password FROM " + DATABASE_USER_TABLE + " where " + KEY_EMAIL + " = '" + email +"'", null);
+        if(c.moveToNext())
+        {
+            String password = (c.getString(0));
+            return password;
+
+        }
+        return null;
+    }
 
 
 }

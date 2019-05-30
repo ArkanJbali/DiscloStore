@@ -155,7 +155,7 @@
             android:textSize="15sp"
             android:id="@+id/ee"
             android:drawableLeft="@mipmap/email_icon"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             />
 
     </LinearLayout>

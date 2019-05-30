@@ -21,7 +21,7 @@ public class registration extends AppCompatActivity {
     Button reg;
     DBAdapter db;
     RadioButton customerBTN,businessBTN;
-    String str=  "^[(0)]{1}[0-9\\s.\\/-]{9}$";
+
     String emailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,7 @@ public class registration extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v) {
-                String emailval = email.getText().toString().trim();
-                Boolean b =emailval.matches(emailPattern);
+
                 if(username.getText().toString().length()<=3){
                     username.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
                     username.setError("user name too short",customErrorDrawable);
@@ -69,7 +68,8 @@ public class registration extends AppCompatActivity {
                     confpassword.setBackground(getResources().getDrawable(R.drawable.et_bg));
                     confpassword.setError(null);
                 }
-
+                String emailval = email.getText().toString().trim();
+                Boolean b =emailval.matches(emailPattern);
                 if(b.toString().equals("false")){
 
                     email.setBackground(getResources().getDrawable(R.drawable.et_bgerr));
@@ -79,7 +79,8 @@ public class registration extends AppCompatActivity {
                     email.setBackground(getResources().getDrawable(R.drawable.et_bg));
                     email.setError(null);
                 }
-                if (Pattern.compile(str).matcher(phone.getText().toString()).matches()) {
+                String phonePattern=  "^[(0)]{1}[0-9\\s.\\/-]{9}$";
+                if (Pattern.compile(phonePattern).matcher(phone.getText().toString()).matches()) {
                     phone.setBackground(getResources().getDrawable(R.drawable.et_bg));
                     phone.setError(null);
                 } else {
@@ -92,6 +93,7 @@ public class registration extends AppCompatActivity {
                     role=1;
 
                 }else if(businessBTN.isChecked()){
+                    role=2;
                     if(!username.getText().toString().equals("") && !password.getText().toString().equals("") &&
                             !confpassword.getText().toString().equals("") && !email.getText().toString().equals("") &&
                             !phone.getText().toString().equals("")) {
@@ -109,6 +111,7 @@ public class registration extends AppCompatActivity {
                     }
                 }
                else if((customerBTN.isChecked())){
+                   role=1;
                    if(!username.getText().toString().equals("") && !password.getText().toString().equals("") &&
                             !confpassword.getText().toString().equals("") && !email.getText().toString().equals("") &&
                             !phone.getText().toString().equals("")){
@@ -155,7 +158,6 @@ public class registration extends AppCompatActivity {
             db.open();
             //role 1-user 2-ownership
             long s1 = db.insertUser(un, mail, pw, ph, role);
-            Toast.makeText(getApplicationContext(), s1  + "Users added", Toast.LENGTH_LONG).show();
             db.close();
         }
         if(!pw.equals(cpw)){
@@ -164,7 +166,6 @@ public class registration extends AppCompatActivity {
     }
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
-
         switch(view.getId()) {
             case R.id.radio_customer:
                 if (checked)

@@ -75,7 +75,7 @@
                         android:paddingRight="15dp"
                         android:textColor="@color/white"
                         android:textSize="15sp"
-                        android:inputType="textPersonName"/>
+                        android:inputType="textEmailAddress"/>
 
                 </LinearLayout>
 
@@ -153,6 +153,7 @@
             android:textColor="@color/white" />
 
         <Button
+            android:id="@+id/forgetPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

@@ -327,6 +327,8 @@
         android:layout_height="wrap_content"
         android:text="Submit"
         android:fontFamily="casual"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_bg"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
