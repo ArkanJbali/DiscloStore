@@ -72,7 +72,9 @@ public class listShops extends AppCompatActivity {
 
                 //get ratings from table add to
                 Boolean s=db.updateRating(sName,rate,counter);
-                Toast.makeText(getApplicationContext(),rate/counter + "",Toast.LENGTH_LONG).show();
+               if(s) {
+                   Toast.makeText(getApplicationContext(), "Rate is updated" + rate / counter, Toast.LENGTH_LONG).show();
+               }
                 db.close();
             }
         });
@@ -167,7 +169,7 @@ public class listShops extends AppCompatActivity {
             tableRow.addView(storename);
 
             tableLayout.addView(tableRow);
-            Toast.makeText(getApplicationContext(),"no rows in DB",Toast.LENGTH_LONG).show();
+           //Toast.makeText(getApplicationContext(),"no rows in DB",Toast.LENGTH_LONG).show();
         }
 
 

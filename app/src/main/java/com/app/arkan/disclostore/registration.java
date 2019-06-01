@@ -89,10 +89,7 @@ public class registration extends AppCompatActivity {
                 }
                  customerBTN = findViewById(R.id.radio_customer);
                  businessBTN = findViewById(R.id.radio_business);
-                if(customerBTN.isChecked()){
-                    role=1;
-
-                }else if(businessBTN.isChecked()){
+                if(businessBTN.isChecked()){
                     role=2;
                     if(!username.getText().toString().equals("") && !password.getText().toString().equals("") &&
                             !confpassword.getText().toString().equals("") && !email.getText().toString().equals("") &&
