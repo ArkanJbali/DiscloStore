@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+//Admin Area
+
 public class DBActivity extends Activity {
     /** Called when the activity is first created. */
     DBAdapter db;

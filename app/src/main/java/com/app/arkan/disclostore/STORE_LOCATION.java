@@ -71,8 +71,6 @@ Toast.makeText(getApplicationContext(),"inside getCurrent",Toast.LENGTH_LONG).sh
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {  @Override
         public void onMapClick(LatLng point)
         { Log.d("DEBUG","Map clicked [" + point.latitude + " / " + point.longitude + "]");

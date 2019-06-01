@@ -1,9 +1,7 @@
 package com.app.arkan.disclostore;
 
-import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,6 +10,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+//Viewing Store location
 public class Get_store_loc extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -51,7 +50,7 @@ public class Get_store_loc extends FragmentActivity implements OnMapReadyCallbac
         if (!lan.equals("") && !lang.equals("")){
             // Add a marker in Sydney and move the camera
             LatLng newloc = new LatLng(Float.valueOf(lan), Float.valueOf(lang));
-            mMap.addMarker(new MarkerOptions().position(newloc).title("Marker in Sydney"));
+            mMap.addMarker(new MarkerOptions().position(newloc).title("Your Store"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(newloc));
     }
 

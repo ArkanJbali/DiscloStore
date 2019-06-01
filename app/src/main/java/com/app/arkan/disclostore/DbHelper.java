@@ -9,6 +9,7 @@ import android.util.Log;
 
 import static android.provider.BaseColumns._ID;
 
+//Admin Area
 
 class DbHelper extends SQLiteOpenHelper {
     private static final String TAG = DbHelper.class.getSimpleName();

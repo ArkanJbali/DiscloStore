@@ -1,13 +1,11 @@
 package com.app.arkan.disclostore;
 
 import android.content.Context;
-import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.hsalf.smilerating.BaseRating;
 import com.hsalf.smilerating.SmileRating;
@@ -21,6 +19,8 @@ public class GlobalUtils {
         View v = inflater.inflate(R.layout.rating_dialog, null);
         dialog.setContentView(v);
         SmileRating smileRating = (SmileRating) dialog.findViewById(R.id.smile_rating);
+
+        //the default smile rating
         smileRating.setSelectedSmile(BaseRating.OKAY);
         smileRating.setOnSmileySelectionListener(new SmileRating.OnSmileySelectionListener() {
             @Override

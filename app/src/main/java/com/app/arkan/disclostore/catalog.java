@@ -14,11 +14,13 @@ public class catalog extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //CardView components are used
         setContentView(R.layout.activity_catalog);
 
     }
     public void onClickShops(View v){
         switch (v.getId()) {
+            //send category name + id to retrieve the specific data from DB send to listShops
             case R.id.clothesImg: {
                 Intent intent = new Intent(catalog.this, listShops.class);
                 intent.putExtra("Title", "Clothes");

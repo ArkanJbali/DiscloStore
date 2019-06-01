@@ -95,6 +95,7 @@ public void onCreate(Bundle savedInstanceState) {
         final Drawable customErrorDrawable = getResources().getDrawable(R.drawable.err);
         customErrorDrawable.setBounds(0, 0, customErrorDrawable.getIntrinsicWidth(), customErrorDrawable.getIntrinsicHeight());
 
+        //get location position(latitude,longitude) from location activity
         sl=getIntent().getStringExtra("location");
 
 
@@ -321,6 +322,7 @@ public void onNothingSelected(AdapterView<?> arg0) {
                 dialog.show();
         }
     }
+    //grant permission to get image not in Manifest(user privacy)
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == 0) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
@@ -371,7 +373,7 @@ public void onNothingSelected(AdapterView<?> arg0) {
         }).start();
     }
 
-
+    //getting image from camera or gallery activity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -402,26 +404,7 @@ public void onNothingSelected(AdapterView<?> arg0) {
 
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-
-            case R.id.action_sort:
-                Intent intent = new Intent(this, DetailsActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
 
 
     private void onCaptureImageResult(Intent data) {
@@ -434,7 +417,7 @@ public void onNothingSelected(AdapterView<?> arg0) {
         profileImageView.setImageBitmap(thumbnail);
 
     }
-
+    //store data into DB
    public void storeData(){
        if(su.isChecked()){ day+="Su ,";}
        if(mo.isChecked()){ day+="Mo ,";}
@@ -459,7 +442,6 @@ public void onNothingSelected(AdapterView<?> arg0) {
                 enterBemail.getText().toString(), webURL,sl,storename,1,1);
 
         db.insertCategory(cat);
-
         db.insertStoreinfo(cat,storename,1,1);
         if(id >= 0) {
             Toast.makeText(this, "Data saved to DB successfully", Toast.LENGTH_SHORT).show();
@@ -471,5 +453,24 @@ public void onNothingSelected(AdapterView<?> arg0) {
         db.close();
 
    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.action_sort:
+                Intent intent = new Intent(this, DetailsActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 }

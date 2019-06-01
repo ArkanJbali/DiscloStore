@@ -21,6 +21,7 @@ public class login extends AppCompatActivity {
     EditText un,pass;
     RelativeLayout rellay1, rellay2;
     static int ROLE_FLAG=0;
+    //for login animation
     Handler handler = new Handler();
     Runnable runnable = new Runnable() {
         @Override

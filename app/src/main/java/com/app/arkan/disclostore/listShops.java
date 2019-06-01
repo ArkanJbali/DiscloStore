@@ -24,6 +24,8 @@ public class listShops extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_shops);
+
+        //creating customize toolbar that included in xml file + customize style from manifest
         Toolbar tb =  findViewById(R.id.app_bar);
         ImageView logo = (ImageView) tb.findViewById(R.id.logo);
         TextView title = (TextView) tb.findViewById(R.id.title);
@@ -37,28 +39,13 @@ public class listShops extends AppCompatActivity {
 
         createShopList();
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+
 
     public void openRatingDialog(final String sName){
         GlobalUtils.showDialog(this, new DialogCallback() {
             @Override
             public void callback(int ratings) {
                 db.open();
-
                int rate =  db.getShopRating(sName);
                int counter = db.getShopCounter(sName);
                 Log.d("Rateee","Name:"+sName);
@@ -68,8 +55,6 @@ public class listShops extends AppCompatActivity {
                if(rate==0){
                    rate = 1;
                }
-
-
                 //get ratings from table add to
                 Boolean s=db.updateRating(sName,rate,counter);
                if(s) {
@@ -88,14 +73,14 @@ public class listShops extends AppCompatActivity {
 
 
 
-
+        //create shop list programmatically by getting data from DB
     public void createShopList(){
         //layout
         TableLayout tableLayout = findViewById(R.id.table_ly);
 
         context = getApplicationContext();
         db.open();
-        int categoryid = getIntent().getIntExtra("categoryid",0);
+        int categoryid = getIntent().getIntExtra("categoryid",0); // getting id from catalog activity
             Cursor c = db.getListShopRow(categoryid);
         c.moveToFirst();
         if(c.getCount() > 0)
@@ -108,6 +93,8 @@ public class listShops extends AppCompatActivity {
                     TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
                     tableRow.setLayoutParams(layoutParams);
                     ImageView img = new ImageView(this);
+
+                    //db.getString(1) its equal to store name
                     if(db.get(c.getString(1)) == null){
                         Toast.makeText(this,"Null", Toast.LENGTH_SHORT).show();
                     }else {
@@ -122,6 +109,14 @@ public class listShops extends AppCompatActivity {
                     storename.setText(storeNameTxt);
                     storename.setTextColor(getResources().getColor(R.color.black));
                     storename.setTextSize(25);
+                    TextView blankTxt = new TextView(this);
+                    blankTxt.setText("            ");
+                    blankTxt.setTextColor(getResources().getColor(R.color.black));
+                    blankTxt.setTextSize(25);
+                    TextView blankTxt1 = new TextView(this);
+                    blankTxt1.setText("       ");
+                    blankTxt1.setTextColor(getResources().getColor(R.color.black));
+                    blankTxt1.setTextSize(25);
                     ImageView rating = new ImageView(this);
                     rating.setBackgroundResource(R.drawable.rating);
                     rating.setMaxWidth(50);
@@ -137,10 +132,9 @@ public class listShops extends AppCompatActivity {
 
                     TextView ratingText = new TextView(this);
                     int average = db.getShopRating(storeNameTxt)/db.getShopCounter(storeNameTxt);
-
                     ratingText.setText(average+"/4");
                     ratingText.setTextColor(getResources().getColor(R.color.black));
-                    ratingText.setTextSize(25);
+                    ratingText.setTextSize(18);
                     tableRow.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -149,9 +143,12 @@ public class listShops extends AppCompatActivity {
                             rowClick(name);
                         }
                     });
+                    tableRow.addView(blankTxt1);
                     tableRow.addView(storename);
-                    tableRow.addView(rating);
+                    tableRow.addView(blankTxt);
                     tableRow.addView(ratingText);
+                    tableRow.addView(rating);
+
                     tableRow.setPadding(10,10,10,10);
                     tableLayout.addView(tableRow);
 
@@ -175,5 +172,19 @@ public class listShops extends AppCompatActivity {
 
             db.close();
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 }
