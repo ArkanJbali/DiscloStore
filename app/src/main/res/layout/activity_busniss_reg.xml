@@ -70,7 +70,7 @@
             android:background="@drawable/et_bg"
             android:drawableLeft="@mipmap/store_icon"
             android:fontFamily="sans-serif-light"
-            android:inputType="text"
+            android:inputType="text|textShortMessage"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:textColor="@color/white"
